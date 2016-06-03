@@ -340,7 +340,7 @@ headHtml += "<thead>";
                 trHtml += "<td>" + lista[i].plazoAutoridad + "' </td>";
                 trHtml += "<td>" + lista[i].comentario1 + "</td>";
                 trHtml += "</tr>";
-                alert("hola mundo desde aca");
+               
             }
             body.append(trHtml);
         })
