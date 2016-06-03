@@ -100,6 +100,8 @@
                     <a  class="collection-item black-text"  ng-click="atrasadosSR()">Atrasados sin resolucion<span class="badge"></span></a>
                     <a  class="collection-item black-text"  ng-click="cD()">Ciudad Juárez<span class="badge"></span></a>
                     <a  class="collection-item black-text"  ng-click="pendientesNot()">Pendientes Notificaciones<span class="badge"></span></a>
+                    <a  class="collection-item black-text"  ng-click="pendientesNot()">Recientes<span class="badge"></span></a>
+                    <a  class="collection-item black-text"  ng-click="pendientesNot()">Por vencer<span class="badge"></span></a>
                 </div>
 
 
