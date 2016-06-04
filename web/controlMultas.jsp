@@ -63,7 +63,7 @@
                     <li><a href="Administrativo.html">Administrativo</a></li>
                     <li><a href="Reportes.html">Reportes</a></li>
                     <li><a href="Admin.html">Admin</a></li>
-                    <li><a href="OtrosMas.html">otros</a></li>
+                    <li><a href="controlMultas.jsp">Control Multas</a></li>
                 </ul>
             </div>
             <div class="chip right">
