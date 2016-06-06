@@ -5111,7 +5111,7 @@ button.btn-floating {
   vertical-align: middle;
   z-index: 1;
   will-change: opacity, transform;
-  transition: all .3s ease-out;
+  transition: all 1s ease-out;
 }
 
 .waves-effect .waves-ripple {
