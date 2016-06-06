@@ -78,9 +78,9 @@ app.controller("controlMultasCtrl", function ($scope, $http, $compile, $q) {
     // body.html("");
     $scope.todos = function () {
         headHtml += "<thead>";
-        headHtml += "<tr class='center - align'>";
+        headHtml += "<tr class='center - align' valign='top' >";
         headHtml += "<th data-field='Referencia' >Referencia</th>";
-        headHtml += "<th data-field='Cliente'>Cliente</th>";
+        headHtml += "<th data-field='Cliente' >Cliente</th>";
         headHtml += "<th data-field='Pedimento'>Pedimento</th>";
         headHtml += "<th data-field='Asunto'>Asunto</th>";
         headHtml += "<th data-field='Numero_Acta'>Numero De Acta</th>";
@@ -104,6 +104,7 @@ app.controller("controlMultasCtrl", function ($scope, $http, $compile, $q) {
         head.append(headHtml);
         $q.when(obtenerDatos(), function (lista) {
             for (var i = 0; i < lista.length; i++) {
+
                 trHtml += "<tr>";
                 trHtml += "<td>" + lista[i].referencia + "</td>";
                 trHtml += "<td>" + lista[i].cliente + "</td>";
@@ -133,6 +134,7 @@ app.controller("controlMultasCtrl", function ($scope, $http, $compile, $q) {
         })
     }
     $scope.concluidos = function () {
+
         headHtml += "<thead>";
         headHtml += "<tr class='center - align'>";
         headHtml += "<th data-field='Referencia' >Referencia</th>";
@@ -156,24 +158,27 @@ app.controller("controlMultasCtrl", function ($scope, $http, $compile, $q) {
 
         $q.when(obtenerDatos(), function (lista) {
             for (var i = 0; i < lista.length; i++) {
-                trHtml += "<tr>";
-                trHtml += "<td>" + lista[i].referencia + "</td>";
-                trHtml += "<td>" + lista[i].cliente + "</td>";
-                trHtml += "<td>" + lista[i].pedimento + "</td>";
-                trHtml += "<td>" + lista[i].asunto + "</td>";
-                trHtml += "<td>" + lista[i].numerodeActa + "</td>";
-                trHtml += "<td>" + lista[i].motivo + "</td>";
-                trHtml += "<td>" + lista[i].responsable + "</td>";
-                trHtml += "<td>" + lista[i].estatus + "</td>";
-                trHtml += "<td>" + lista[i].monto + "</td>";
-                trHtml += "<td>" + lista[i].despacho + "</td>";
-                trHtml += "<td>" + lista[i].notificacion + "</td>";
-                trHtml += "<td>" + lista[i].vencimiento + "</td>";
-                trHtml += "<td>" + lista[i].contestacion + "</td>";
-                trHtml += "<td>" + lista[i].notificacionResolucionDefefinitiva + "</td>";
-                trHtml += "<td>" + lista[i].asuntosConcluidos + "</td>";
-                trHtml += "<td>" + lista[i].numeroDeResolucionDefinitiva + "</td>";
-                trHtml += "</tr>";
+                if (lista[i].nombreSeccion == "Concluidas")
+                {
+                    trHtml += "<tr>";
+                    trHtml += "<td>" + lista[i].referencia + "</td>";
+                    trHtml += "<td>" + lista[i].cliente + "</td>";
+                    trHtml += "<td>" + lista[i].pedimento + "</td>";
+                    trHtml += "<td>" + lista[i].asunto + "</td>";
+                    trHtml += "<td>" + lista[i].numerodeActa + "</td>";
+                    trHtml += "<td>" + lista[i].motivo + "</td>";
+                    trHtml += "<td>" + lista[i].responsable + "</td>";
+                    trHtml += "<td>" + lista[i].estatus + "</td>";
+                    trHtml += "<td>" + lista[i].monto + "</td>";
+                    trHtml += "<td>" + lista[i].despacho + "</td>";
+                    trHtml += "<td>" + lista[i].notificacion + "</td>";
+                    trHtml += "<td>" + lista[i].vencimiento + "</td>";
+                    trHtml += "<td>" + lista[i].contestacion + "</td>";
+                    trHtml += "<td>" + lista[i].notificacionResolucionDefefinitiva + "</td>";
+                    trHtml += "<td>" + lista[i].asuntosConcluidos + "</td>";
+                    trHtml += "<td>" + lista[i].numeroDeResolucionDefinitiva + "</td>";
+                    trHtml += "</tr>";
+                }
             }
             body.append(trHtml);
         })
@@ -181,7 +186,7 @@ app.controller("controlMultasCtrl", function ($scope, $http, $compile, $q) {
 
 
     $scope.pama = function () {
-headHtml += "<thead>";
+        headHtml += "<thead>";
         headHtml += "<tr class='center - align'>";
         headHtml += "<th data-field='Referencia' >Referencia</th>";
         headHtml += "<th data-field='Cliente'>Cliente</th>";
@@ -201,6 +206,8 @@ headHtml += "<thead>";
         head.append(headHtml);
         $q.when(obtenerDatos(), function (lista) {
             for (var i = 0; i < lista.length; i++) {
+                if (lista[i].asunto == "PAMA")
+                {
                 trHtml += "<tr>";
                 trHtml += "<td>" + lista[i].referencia + "</td>";
                 trHtml += "<td>" + lista[i].cliente + "</td>";
@@ -216,14 +223,15 @@ headHtml += "<thead>";
                 trHtml += "<td>" + lista[i].contestacion + "</td>";
                 trHtml += "<td>" + lista[i].plazoAutoridad + "' </td>";
                 trHtml += "<td>" + lista[i].numeroDeResolucionDefinitiva + "</td>";
-                 trHtml += "<td>" + lista[i].comentarioPama + "</td>";
+                trHtml += "<td>" + lista[i].comentarioPama + "</td>";
                 trHtml += "</tr>";
             }
+        }
             body.append(trHtml);
         })
     }
     $scope.atrasadosSR = function () {
-       headHtml += "<thead>";
+        headHtml += "<thead>";
         headHtml += "<tr class='center - align'>";
         headHtml += "<th data-field='Referencia' >Referencia</th>";
         headHtml += "<th data-field='Cliente'>Cliente</th>";
@@ -240,10 +248,12 @@ headHtml += "<thead>";
         headHtml += "<th data-field='Asuntos_concluidos'>Asuntos concluidos</th>";
         headHtml += "<th data-field='Numero_de_resolucion_definitiva'>Numero de resolucion definitiva</th>";
         headHtml += "<th data-field='Comentario1'>Comentario 1 </th>";
-       
+
         head.append(headHtml);
         $q.when(obtenerDatos(), function (lista) {
             for (var i = 0; i < lista.length; i++) {
+                  if (lista[i].nombreSeccion == "Atrasados sin resolucion")
+                {
                 trHtml += "<tr>";
                 trHtml += "<td>" + lista[i].referencia + "</td>";
                 trHtml += "<td>" + lista[i].cliente + "</td>";
@@ -262,6 +272,7 @@ headHtml += "<thead>";
                 trHtml += "<td>" + lista[i].comentario1 + "</td>";
                 trHtml += "</tr>";
             }
+        }
             body.append(trHtml);
         })
     }
@@ -282,9 +293,11 @@ headHtml += "<thead>";
         headHtml += "<th data-field='Contestacion_4_meses'>Contestacion 4 meses</th>";
         headHtml += "<th data-field='Asunto_Notificacion_ciudad_juarez'>Asunto Notificacion Ciudad Juárez</th>";
         headHtml += "<th data-field='Comentario1'>Comentario 1 </th>";
-              head.append(headHtml);
+        head.append(headHtml);
         $q.when(obtenerDatos(), function (lista) {
             for (var i = 0; i < lista.length; i++) {
+                  if (lista[i].nombreSeccion == "Cd. Juarez")
+                {
                 trHtml += "<tr>";
                 trHtml += "<td>" + lista[i].referencia + "</td>";
                 trHtml += "<td>" + lista[i].cliente + "</td>";
@@ -292,24 +305,18 @@ headHtml += "<thead>";
                 trHtml += "<td>" + lista[i].asunto + "</td>";
                 trHtml += "<td>" + lista[i].numerodeActa + "</td>";
                 trHtml += "<td>" + lista[i].motivo + "</td>";
-                trHtml += "<td>" + lista[i].responsable + "</td>";
                 trHtml += "<td>" + lista[i].estatus + "</td>";
-                trHtml += "<td>" + lista[i].monto + "</td>";
                 trHtml += "<td>" + lista[i].despacho + "</td>";
                 trHtml += "<td>" + lista[i].notificacion + "</td>";
                 trHtml += "<td>" + lista[i].vencimiento + "</td>";
                 trHtml += "<td>" + lista[i].contestacion + "</td>";
                 trHtml += "<td>" + lista[i].vencimiento4Meses + "</td>";
                 trHtml += "<td>" + lista[i].asuntosnotificadosenCdJuarez + "</td>";
-                trHtml += "<td>" + lista[i].plazoAutoridad + "' </td>";
-                trHtml += "<td>" + lista[i].notificacionResolucionDefefinitiva + "</td>";
-                trHtml += "<td>" + lista[i].asuntosConcluidos + "</td>";
-                trHtml += "<td>" + lista[i].numeroDeResolucionDefinitiva + "</td>";
                 trHtml += "<td>" + lista[i].comentario1 + "</td>";
-                trHtml += "<td>" + lista[i].comentario2 + "</td>";
-                trHtml += "<td>" + lista[i].comentarioPama + "</td>";
+
                 trHtml += "</tr>";
             }
+        }
             body.append(trHtml);
         })
     }
@@ -322,25 +329,18 @@ headHtml += "<thead>";
         headHtml += "<th data-field='Asunto'>Asunto</th>";
         headHtml += "<th data-field='Numero_Acta'>Numero De Acta</th>";
         headHtml += "<th data-field='Motivo'>Motivo</th>";
-        headHtml += "<th data-field='Responsable'>Responsable</th>";
         headHtml += "<th data-field='Estatus'>Estatus</th>";
-        headHtml += "<th data-field='Monto'>Monto</th>";
         headHtml += "<th data-field='Despacho'>Despacho</th>";
         headHtml += " <th data-field='Notificacion'>Notificacion</th>";
         headHtml += "<th data-field='Vencimiento'>Vencimiento</th>";
         headHtml += "<th data-field='Contestacion'>Contestacion</th>";
-        headHtml += "<th data-field='Contestacion_4_meses'>Contestacion 4 meses</th>";
-        headHtml += "<th data-field='Asunto_Notificacion_ciudad_juarez'>Asunto Notificacion Ciudad Juárez</th>";
         headHtml += "<th data-field='Plazo_Autoridad'> Plazo Autoridad</th>";
-        headHtml += "<th data-field='Notificacion_resolucion_definitiva'>Notificacion Resolucion Definitiva</th>";
-        headHtml += "<th data-field='Asuntos_concluidos'>Asuntos concluidos</th>";
-        headHtml += "<th data-field='Numero_de_resolucion_definitiva'>Numero de resolucion definitiva</th>";
         headHtml += "<th data-field='Comentario1'>Comentario 1 </th>";
-        headHtml += "<th data-field='Comentario2'>Comentario 2</th>";
-        headHtml += "<th data-field='Comentario_Pama'> Comentario Pama</th>";
         head.append(headHtml);
         $q.when(obtenerDatos(), function (lista) {
             for (var i = 0; i < lista.length; i++) {
+                  if (lista[i].nombreSeccion == "Pendientes Notificacion Importadores")
+                {
                 trHtml += "<tr>";
                 trHtml += "<td>" + lista[i].referencia + "</td>";
                 trHtml += "<td>" + lista[i].cliente + "</td>";
@@ -348,24 +348,17 @@ headHtml += "<thead>";
                 trHtml += "<td>" + lista[i].asunto + "</td>";
                 trHtml += "<td>" + lista[i].numerodeActa + "</td>";
                 trHtml += "<td>" + lista[i].motivo + "</td>";
-                trHtml += "<td>" + lista[i].responsable + "</td>";
                 trHtml += "<td>" + lista[i].estatus + "</td>";
-                trHtml += "<td>" + lista[i].monto + "</td>";
                 trHtml += "<td>" + lista[i].despacho + "</td>";
                 trHtml += "<td>" + lista[i].notificacion + "</td>";
                 trHtml += "<td>" + lista[i].vencimiento + "</td>";
                 trHtml += "<td>" + lista[i].contestacion + "</td>";
-                trHtml += "<td>" + lista[i].vencimiento4Meses + "</td>";
-                trHtml += "<td>" + lista[i].asuntosnotificadosenCdJuarez + "</td>";
                 trHtml += "<td>" + lista[i].plazoAutoridad + "' </td>";
-                trHtml += "<td>" + lista[i].notificacionResolucionDefefinitiva + "</td>";
-                trHtml += "<td>" + lista[i].asuntosConcluidos + "</td>";
-                trHtml += "<td>" + lista[i].numeroDeResolucionDefinitiva + "</td>";
                 trHtml += "<td>" + lista[i].comentario1 + "</td>";
-                trHtml += "<td>" + lista[i].comentario2 + "</td>";
-                trHtml += "<td>" + lista[i].comentarioPama + "</td>";
                 trHtml += "</tr>";
+
             }
+        }
             body.append(trHtml);
         })
     }

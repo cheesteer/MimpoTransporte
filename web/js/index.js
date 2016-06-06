@@ -78,9 +78,9 @@ app.controller("controlMultasCtrl", function ($scope, $http, $compile, $q) {
     // body.html("");
     $scope.todos = function () {
         headHtml += "<thead>";
-        headHtml += "<tr class='center - align'>";
+        headHtml += "<tr class='center - align' valign='top' >";
         headHtml += "<th data-field='Referencia' >Referencia</th>";
-        headHtml += "<th data-field='Cliente'>Cliente</th>";
+        headHtml += "<th data-field='Cliente' >Cliente</th>";
         headHtml += "<th data-field='Pedimento'>Pedimento</th>";
         headHtml += "<th data-field='Asunto'>Asunto</th>";
         headHtml += "<th data-field='Numero_Acta'>Numero De Acta</th>";

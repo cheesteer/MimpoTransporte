@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,43 +25,73 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Lenovo
  */
 @Entity
-@Table(catalog = "Mimpo", schema = "dbo")
+@Table(name = "ControlMultas")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ControlMultas.findAll", query = "SELECT c FROM ControlMultas c")})
+    @NamedQuery(name = "ControlMultas.findAll", query = "SELECT c FROM ControlMultas c"),
+    @NamedQuery(name = "ControlMultas.findById", query = "SELECT c FROM ControlMultas c WHERE c.id = :id"),
+    @NamedQuery(name = "ControlMultas.findByNombreSeccion", query = "SELECT c FROM ControlMultas c WHERE c.nombreSeccion = :nombreSeccion"),
+    @NamedQuery(name = "ControlMultas.findByReferencia", query = "SELECT c FROM ControlMultas c WHERE c.referencia = :referencia"),
+    @NamedQuery(name = "ControlMultas.findByCliente", query = "SELECT c FROM ControlMultas c WHERE c.cliente = :cliente"),
+    @NamedQuery(name = "ControlMultas.findByPedimento", query = "SELECT c FROM ControlMultas c WHERE c.pedimento = :pedimento"),
+    @NamedQuery(name = "ControlMultas.findByAsunto", query = "SELECT c FROM ControlMultas c WHERE c.asunto = :asunto"),
+    @NamedQuery(name = "ControlMultas.findByNumerodeActa", query = "SELECT c FROM ControlMultas c WHERE c.numerodeActa = :numerodeActa"),
+    @NamedQuery(name = "ControlMultas.findByMotivo", query = "SELECT c FROM ControlMultas c WHERE c.motivo = :motivo"),
+    @NamedQuery(name = "ControlMultas.findByResponsable", query = "SELECT c FROM ControlMultas c WHERE c.responsable = :responsable"),
+    @NamedQuery(name = "ControlMultas.findByEstatus", query = "SELECT c FROM ControlMultas c WHERE c.estatus = :estatus"),
+    @NamedQuery(name = "ControlMultas.findByMonto", query = "SELECT c FROM ControlMultas c WHERE c.monto = :monto"),
+    @NamedQuery(name = "ControlMultas.findByDespacho", query = "SELECT c FROM ControlMultas c WHERE c.despacho = :despacho"),
+    @NamedQuery(name = "ControlMultas.findByNotificacion", query = "SELECT c FROM ControlMultas c WHERE c.notificacion = :notificacion"),
+    @NamedQuery(name = "ControlMultas.findByVencimiento", query = "SELECT c FROM ControlMultas c WHERE c.vencimiento = :vencimiento"),
+    @NamedQuery(name = "ControlMultas.findByContestacion", query = "SELECT c FROM ControlMultas c WHERE c.contestacion = :contestacion"),
+    @NamedQuery(name = "ControlMultas.findByVencimiento4Meses", query = "SELECT c FROM ControlMultas c WHERE c.vencimiento4Meses = :vencimiento4Meses"),
+    @NamedQuery(name = "ControlMultas.findByAsuntosnotificadosenCdJuarez", query = "SELECT c FROM ControlMultas c WHERE c.asuntosnotificadosenCdJuarez = :asuntosnotificadosenCdJuarez"),
+    @NamedQuery(name = "ControlMultas.findByPlazoAutoridad", query = "SELECT c FROM ControlMultas c WHERE c.plazoAutoridad = :plazoAutoridad"),
+    @NamedQuery(name = "ControlMultas.findByNotificacionResolucionDefefinitiva", query = "SELECT c FROM ControlMultas c WHERE c.notificacionResolucionDefefinitiva = :notificacionResolucionDefefinitiva"),
+    @NamedQuery(name = "ControlMultas.findByAsuntosConcluidos", query = "SELECT c FROM ControlMultas c WHERE c.asuntosConcluidos = :asuntosConcluidos"),
+    @NamedQuery(name = "ControlMultas.findByNumeroDeResolucionDefinitiva", query = "SELECT c FROM ControlMultas c WHERE c.numeroDeResolucionDefinitiva = :numeroDeResolucionDefinitiva"),
+    @NamedQuery(name = "ControlMultas.findByComentario1", query = "SELECT c FROM ControlMultas c WHERE c.comentario1 = :comentario1"),
+    @NamedQuery(name = "ControlMultas.findByComentario2", query = "SELECT c FROM ControlMultas c WHERE c.comentario2 = :comentario2"),
+    @NamedQuery(name = "ControlMultas.findByComentarioPama", query = "SELECT c FROM ControlMultas c WHERE c.comentarioPama = :comentarioPama")})
 public class ControlMultas implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "Id")
     private Integer id;
-    @Column(name = "Nombre_Seccion", length = 255)
+    
+    @Column(name = "Nombre_Seccion")
     private String nombreSeccion;
-    @Column(length = 255)
+    @Column(name = "Referencia")
     private String referencia;
-    @Column(length = 255)
+    @Column(name = "Cliente")
     private String cliente;
-    @Column(length = 255)
+    @Column(name = "Pedimento")
     private String pedimento;
-    @Column(length = 255)
+    @Column(name = "Asunto")
     private String asunto;
-    @Column(name = "Numero_de_Acta", length = 255)
+    @Column(name = "Numero_de_Acta")
     private String numerodeActa;
-    @Column(length = 255)
+    @Column(name = "Motivo")
     private String motivo;
-    @Column(length = 255)
+    @Column(name = "Responsable")
     private String responsable;
-    @Column(length = 255)
+    @Column(name = "Estatus")
     private String estatus;
-    @Column(length = 255)
+    @Column(name = "Monto")
     private String monto;
+    @Column(name = "Despacho")
     @Temporal(TemporalType.TIMESTAMP)
     private Date despacho;
+    @Column(name = "Notificacion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date notificacion;
+    @Column(name = "Vencimiento")
     @Temporal(TemporalType.TIMESTAMP)
     private Date vencimiento;
+    @Column(name = "Contestacion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date contestacion;
     @Column(name = "Vencimiento_4Meses")
@@ -74,15 +106,15 @@ public class ControlMultas implements Serializable {
     @Column(name = "Notificacion_Resolucion_Defefinitiva")
     @Temporal(TemporalType.TIMESTAMP)
     private Date notificacionResolucionDefefinitiva;
-    @Column(name = "Asuntos_Concluidos", length = 255)
+    @Column(name = "Asuntos_Concluidos")
     private String asuntosConcluidos;
-    @Column(name = "Numero_De_Resolucion_Definitiva", length = 255)
+    @Column(name = "Numero_De_Resolucion_Definitiva")
     private String numeroDeResolucionDefinitiva;
-    @Column(length = 255)
+    @Column(name = "Comentario1")
     private String comentario1;
-    @Column(length = 255)
+    @Column(name = "Comentario2")
     private String comentario2;
-    @Column(name = "Comentario_Pama", length = 255)
+    @Column(name = "Comentario_Pama")
     private String comentarioPama;
 
     public ControlMultas() {

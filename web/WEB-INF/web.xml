@@ -8,6 +8,10 @@
         <servlet-name>CObtenerMultass</servlet-name>
         <servlet-class>Controlador.CObtenerMultass</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CnuevoRegistro</servlet-name>
+        <servlet-class>Controlador.CnuevoRegistro</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Cindex3</servlet-name>
         <url-pattern>/Cindex3</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>CObtenerMultass</servlet-name>
         <url-pattern>/CObtenerMultass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CnuevoRegistro</servlet-name>
+        <url-pattern>/CnuevoRegistro</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

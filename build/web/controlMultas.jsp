@@ -21,12 +21,13 @@
         <script src="js/materialize.js" type="text/javascript"></script>
         <script src="js/materialize.min.js" type="text/javascript"></script>
         <link href="css/materialize.css" rel="stylesheet" type="text/css"/>
+        <link href="css/waverPersonalizado.css" rel="stylesheet" type="text/css"/>
         <link href="css/materialize.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/angular.js" type="text/javascript"></script>
         <script src="js/angular.min.js" type="text/javascript"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="js/index.js" type="text/javascript"></script>
-
+        <script src="js/nuevoRegistro/nuevoRegistro.js" type="text/javascript"></script>
 
 
         <script>
@@ -36,12 +37,14 @@
                     $('.datepicker').pickadate({
                         selectMonths: true, // Creates a dropdown to control month
                         selectYears: 15, // Creates a dropdown of 15 years to control year
-                        dateFormat: 'dd/mm/yyyy'
+                        format: 'dd/mm/yyyy' 
                     });
-
+                    $('.modal-trigger').leanModal();
                 });
 
                 Materialize.scrollFire(options);
+
+
         </script>
 
         <nav>
@@ -61,7 +64,7 @@
                     <li><a href="Administrativo.html">Administrativo</a></li>
                     <li><a href="Reportes.html">Reportes</a></li>
                     <li><a href="Admin.html">Admin</a></li>
-                    <li><a href="OtrosMas.html">otros</a></li>
+                    <li><a href="controlMultas.jsp">Control Multas</a></li>
                 </ul>
             </div>
             <div class="chip right">
@@ -100,6 +103,8 @@
                     <a  class="collection-item black-text"  ng-click="atrasadosSR()">Atrasados sin resolucion<span class="badge"></span></a>
                     <a  class="collection-item black-text"  ng-click="cD()">Ciudad Juárez<span class="badge"></span></a>
                     <a  class="collection-item black-text"  ng-click="pendientesNot()">Pendientes Notificaciones<span class="badge"></span></a>
+                    <a  class="collection-item black-text"  ng-click="Recientes()">Recientes<span class="badge"></span></a>
+                    <a  class="collection-item black-text"  ng-click="porVencer()">Por vencer<span class="badge"></span></a>
                 </div>
 
 
@@ -113,8 +118,111 @@
                             <a href="#!" class="breadcrumb  blue-grey-text ">Sección De Revisión Pedimento Glosa</a>
                         </div>
                     </div>
+
                 </nav>
                 <!--Seccion llenado de pedimentos -->
+
+
+
+                <!-- Modal Trigger -->
+                <div class="container">
+                <div class=" row"> 
+                    <div class="container offset-m4 col  m6 ">
+                        <a class=" waves-effect waves-mimpo   btn modal-trigger  blue " href="#modal1">Nuevo Registro</a>
+                    </div>
+                </div>
+            </div>
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal  modal-fixed-footer">
+                   
+                    <div class="modal-content">
+                        <center><h2><a >Registrar Nueva Insidencia </a></h2></center>
+                        <div class="row">
+                            <div class="input-field col s3">
+                                <input value="" id="referencia" type="text" class="validate">
+                                <label class="active" for="Referencia">Referencia </label>
+                            </div>
+                            
+                            <div class="input-field col s3">
+                                <input value="" id="pedimento" type="text" class="validate">
+                                <label class="active" for="Pedimento">Pedimento </label>
+                            </div>
+                            <div class="input-field col s6">
+                                 <select name="Sucursal" ng-model="Sucursal">
+                            <option value="" disabled selected>Elije Cliente</option>
+                            <option value="Comercializadora188">COMERCIALIZADORA 1888, S.A. DE C.V.</option>
+                            <option value="importacionesPh">IMPORTACIONES PH, S.A. DE C.V.</option>
+                            <option value="placio">PALACIO IMPORTACIONES S.A. DE C.V.</option>
+                           </select>
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="input-field col s3">
+                                <input value="" id="asunto" type="text" class="validate">
+                                <label class="active" for="asunto">Asunto </label>
+                            </div>
+                            <div class="input-field col s3">
+                                <input value="" id="numeroActa" type="text" class="validate">
+                                <label class="active" for="numeroActa">Numero De Acta </label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input value="" id="motivo" type="text" class="validate">
+                                <label class="active" for="motivo">Motivo </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s3">
+                                <input value="" id="responsable" type="text" class="validate">
+                                <label class="active" for="responsable">Responsable </label>
+                            </div>
+                            <div class="input-field col s3">
+                                <input value="" id="estatus" type="text" class="validate">
+                                <label class="active" for="estatus">Estatus </label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input value="" id="monto" type="text" class="validate">
+                                <label class="active" for="monto">Monto </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s3">
+                                <input value="" id="Despacho" type="text" class="validate">
+                                <label class="active" for="Despacho">Despacho </label>
+                            </div>
+                            <div class="input-field col s3">
+                                <label class="active" for="notificacion">Notificacion </label>
+                                <input value="" id="notificacion" type="date" class="datepicker">
+                                
+                            </div>
+                            <div class="input-field col s6">
+                                 <label class="active" for="vencimiento">Vencimiento </label>
+                                <input value="" id="vencimiento" type="date" class="datepicker">
+                               
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="input-field col s3">
+                                <input value="" id="constestacion" type="text" class="validate">
+                                <label class="active" for="constestacion">Constestacion </label>
+                            </div>
+                            <div class="input-field col s3">
+                                <input value="" id="plazoAutoridad" type="text" class="validate">
+                                <label class="active" for="plazoAutoridad">Plazo Autoridad </label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input value="" id="observacion" type="text" class="validate">
+                                <label class="active" for="observacion">Observacion </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="guardarNuevoRegistro">Guardar</a>
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat" id="cancelarNuevoRegistro">Cerrar</a>
+                    </div>
+                </div>
+
+
+
 
                 <style>
                     #table-scroll {

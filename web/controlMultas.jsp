@@ -27,7 +27,7 @@
         <script src="js/angular.min.js" type="text/javascript"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="js/index.js" type="text/javascript"></script>
-
+        <script src="js/nuevoRegistro/nuevoRegistro.js" type="text/javascript"></script>
 
 
         <script>
@@ -134,7 +134,9 @@
             </div>
                 <!-- Modal Structure -->
                 <div id="modal1" class="modal  modal-fixed-footer">
+                   
                     <div class="modal-content">
+                        <center><h2><a >Registrar Nueva Insidencia </a></h2></center>
                         <div class="row">
                             <div class="input-field col s3">
                                 <input value="" id="referencia" type="text" class="validate">
@@ -146,8 +148,12 @@
                                 <label class="active" for="Pedimento">Pedimento </label>
                             </div>
                             <div class="input-field col s6">
-                                <input value="" id="cliente" type="text" class="validate">
-                                <label class="active" for="cliente">Cliente </label>
+                                 <select name="Sucursal" ng-model="Sucursal">
+                            <option value="" disabled selected>Elije Cliente</option>
+                            <option value="Comercializadora188">COMERCIALIZADORA 1888, S.A. DE C.V.</option>
+                            <option value="importacionesPh">IMPORTACIONES PH, S.A. DE C.V.</option>
+                            <option value="placio">PALACIO IMPORTACIONES S.A. DE C.V.</option>
+                           </select>
                             </div>
                         </div>
                          <div class="row">
@@ -180,8 +186,8 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s3">
-                                <input value="" id="despacho" type="text" class="validate">
-                                <label class="active" for="responsable">Responsable </label>
+                                <input value="" id="Despacho" type="text" class="validate">
+                                <label class="active" for="Despacho">Despacho </label>
                             </div>
                             <div class="input-field col s3">
                                 <label class="active" for="notificacion">Notificacion </label>
@@ -196,8 +202,8 @@
                         </div>
                          <div class="row">
                             <div class="input-field col s3">
-                                <input value="" id="constancion" type="text" class="validate">
-                                <label class="active" for="constancion">Constancion </label>
+                                <input value="" id="constestacion" type="text" class="validate">
+                                <label class="active" for="constestacion">Constestacion </label>
                             </div>
                             <div class="input-field col s3">
                                 <input value="" id="plazoAutoridad" type="text" class="validate">
@@ -210,8 +216,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Guardar</a>
-                        <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cerrar</a>
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="guardarNuevoRegistro">Guardar</a>
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat" id="cancelarNuevoRegistro">Cerrar</a>
                     </div>
                 </div>
 
