@@ -67,7 +67,7 @@
             <div class="row">
                 <form class="col s12">
                     <div class="input-field col s2">
-                        <select name="Sucursal" ng-model="Sucursal">
+                        <select name="Sucursal" ng-model="Sucursal" >
                             <option value="" disabled selected>Elije tu sucursal</option>
                             <option value="Veracruz">Veracruz</option>
                             <option value="Lazaro">Lazaro</option>

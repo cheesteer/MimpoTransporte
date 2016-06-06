@@ -31,10 +31,10 @@ function guardarnuevoregistroejecutivo() {
     var constestacion = $("#constestacion").val();
     var plazoAutoridad = $("#plazoAutoridad").val();
     var observacion = $("#observacion").val();
-alert("ando aqui:"+referencia);
+    console.log("llebagdo")
     $.ajax({
-        url: 'controlador\Cnuevoregistro',
-        type: 'POST',
+        url: 'CnuevoRegistro',
+        method: 'POST',
         data: {"referencia": referencia
             , "pedimento": pedimento
             , "cliente": cliente
@@ -51,21 +51,22 @@ alert("ando aqui:"+referencia);
             , "comentario1": observacion
         },
         success: function (request) {
-            //alert(request);
+             alert(request);
             if (request == 0) {
-                $("#mensajedelnuevoregistro").html("ERROR AL REGISTRAR, FAVOR DE INTENTARLO DE NUEVO");
-                $("#modalinformacion").openModal();
+              //  $("#mensajedelnuevoregistro").html("ERROR AL REGISTRAR, FAVOR DE INTENTARLO DE NUEVO");
+             //   $("#modalinformacion").openModal();
             } else {
-                $("#mensajedelnuevoregistro").html("REGISTRADO CORRECTAMENTE");
-                $("#modalinformacion").openModal();
+              //  $("#mensajedelnuevoregistro").html("REGISTRADO CORRECTAMENTE");
+              //  $("#modalinformacion").openModal();
                 cancelar();
             }
         }
     });//fin de ajax
+    
+    console.log("saliendo") 
 }
 
 function cancelar() {
-
     $("#referencia").val("");
     $("#pedimento").val("");
     $("#cliente").val("");

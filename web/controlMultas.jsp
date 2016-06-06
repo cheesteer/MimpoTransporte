@@ -102,7 +102,7 @@
                     <a  class="collection-item black-text"  ng-click="pama()">Pama<span class="badge"></span></a>
                     <a  class="collection-item black-text"  ng-click="atrasadosSR()">Atrasados sin resolucion<span class="badge"></span></a>
                     <a  class="collection-item black-text"  ng-click="cD()">Ciudad Juárez<span class="badge"></span></a>
-                    <a  class="collection-item black-text"  ng-click="pendientesNot()">Pendientes Notificaciones<span class="badge"></span></a>
+                <!--   <a  class="collection-item black-text"  ng-click="pendientesNot()">Pendientes Notificaciones<span class="badge"></span></a>-->
                     <a  class="collection-item black-text"  ng-click="Recientes()">Recientes<span class="badge"></span></a>
                     <a  class="collection-item black-text"  ng-click="porVencer()">Por vencer<span class="badge"></span></a>
                 </div>
@@ -135,7 +135,7 @@
                 <!-- Modal Structure -->
                 <div id="modal1" class="modal  modal-fixed-footer">
                    
-                    <div class="modal-content">
+                    <div class="modal-content large">
                         <center><h2><a >Registrar Nueva Insidencia </a></h2></center>
                         <div class="row">
                             <div class="input-field col s3">
@@ -214,6 +214,39 @@
                                 <label class="active" for="observacion">Observacion </label>
                             </div>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="guardarNuevoRegistro">Guardar</a>
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat" id="cancelarNuevoRegistro">Cerrar</a>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                
+                   <!-- Modal Structure -->
+                <div id="mensajedelnuevoregistro" class="modal  modal-fixed-footer">
+                   
+                    <div class="modal-content">
+                        <center>Respuesta</center>
+                        <div class="row">
+                            <div class="input-field col s3">
+                                <input value="" id="referencia" type="text" class="validate">
+                                <label class="active" for="Referencia">Referencia </label>
+                            </div>
+                            
+                            <div class="input-field col s3">
+                                <input value="" id="pedimento" type="text" class="validate">
+                                <label class="active" for="Pedimento">Pedimento </label>
+                            </div>
+                          
+                        </div>
+                  
+                    
+                     
+                        
                     </div>
                     <div class="modal-footer">
                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="guardarNuevoRegistro">Guardar</a>

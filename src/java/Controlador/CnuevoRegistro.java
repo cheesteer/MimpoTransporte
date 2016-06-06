@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.ControlMultas;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,9 +41,11 @@ public class CnuevoRegistro extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        em = Persistence.createEntityManagerFactory("ControlMercanciaPU").createEntityManager();
+        System.out.println("hola mundo do post");
+
+        em = Persistence.createEntityManagerFactory("Mimpo_TransportePU").createEntityManager();
         em.getTransaction().begin();
-        HttpSession misession = request.getSession(true);
+        //  HttpSession misession = request.getSession(true);
 
         String referencia = request.getParameter("referencia");
         String pedimento = request.getParameter("pedimento");
@@ -51,21 +54,20 @@ public class CnuevoRegistro extends HttpServlet {
         String numerodeActa = request.getParameter("numerodeActa");
         String motivo = request.getParameter("motivo");
         String responsable = request.getParameter("responsable");
-   
-        String monto = (String) misession.getAttribute("monto");
-        String estatus = (String) misession.getAttribute("estatus");
-        String notificacion = (String) misession.getAttribute("notificacion");
-            java.util.Date fecha = new Date();
-           
-        String vencimiento = (String) misession.getAttribute("vencimiento");
-        String contestacion = (String) misession.getAttribute("contestacion");
-        String plazoAutoridad = (String) misession.getAttribute("plazoAutoridad");
-        String comentario1 = (String) misession.getAttribute("comentario1");
-         
+
+        String monto = (String) request.getParameter("monto");
+        String estatus = (String) request.getParameter("estatus");
+        String notificacion = (String) request.getParameter("notificacion");
+        java.util.Date fecha = new Date();
+
+        String vencimiento = (String) request.getParameter("vencimiento");
+        String contestacion = (String) request.getParameter("contestacion");
+        String plazoAutoridad = (String) request.getParameter("plazoAutoridad");
+        String comentario1 = (String) request.getParameter("comentario1");
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
         String recientes = "Recienetes";
-      
-       
+
         ControlMultas clas = new ControlMultas();
         try {
             clas.setReferencia(referencia);
@@ -83,7 +85,9 @@ public class CnuevoRegistro extends HttpServlet {
             clas.setPlazoAutoridad(fecha);
             clas.setComentario1(comentario1);
             clas.setNombreSeccion(recientes);
-
+            Gson g = new Gson();
+            String toJson = g.toJson(clas);
+            System.out.println("JSON" + toJson);
             em.persist(clas);
             em.getTransaction().commit();
             em.close();
