@@ -21,6 +21,7 @@
         <script src="js/materialize.js" type="text/javascript"></script>
         <script src="js/materialize.min.js" type="text/javascript"></script>
         <link href="css/materialize.css" rel="stylesheet" type="text/css"/>
+        <link href="css/waverPersonalizado.css" rel="stylesheet" type="text/css"/>
         <link href="css/materialize.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/angular.js" type="text/javascript"></script>
         <script src="js/angular.min.js" type="text/javascript"></script>
@@ -124,11 +125,13 @@
 
 
                 <!-- Modal Trigger -->
-                <div class="row"> 
-                    <div class="container offset-m10 col  m2 ">
-                        <a class="  waves-red  waves-effect waves-light   btn modal-trigger" href="#modal1">Modal</a>
+                <div class="container">
+                <div class=" row"> 
+                    <div class="container offset-m4 col  m6 ">
+                        <a class=" waves-effect waves-mimpo   btn modal-trigger  blue " href="#modal1">Nuevo Registro</a>
                     </div>
                 </div>
+            </div>
                 <!-- Modal Structure -->
                 <div id="modal1" class="modal  modal-fixed-footer">
                     <div class="modal-content">
