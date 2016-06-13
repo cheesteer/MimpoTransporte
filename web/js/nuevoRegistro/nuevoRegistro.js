@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
 
     $(document).on("click", "#cancelarNuevoRegistro", function () {
         cancelar();
@@ -11,7 +11,7 @@ $(document).ready(function () {
 //            alert("El campo Modelo es requerido");
 //            return;
 //        } else {
-            guardarnuevoregistroejecutivo();
+        guardarnuevoregistroejecutivo();
 //        }
     });
 });
@@ -24,46 +24,51 @@ function guardarnuevoregistroejecutivo() {
     var numeroActa = $("#numeroActa").val();
     var motivo = $("#motivo").val();
     var responsable = $("#responsable").val();
-    var estatus = $("#estatus").val();
     var monto = $("#monto").val();
+    // var estatus = $("#estatus").val();
+    var despacho = $("#despacho").val();
     var notificacion = $("#notificacion").val();
     var vencimiento = $("#vencimiento").val();
     var constestacion = $("#constestacion").val();
-    var plazoAutoridad = $("#plazoAutoridad").val();
-    var observacion = $("#observacion").val();
-    console.log("llebagdo")
+    //var plazoAutoridad = $("#plazoAutoridad").val();
+    // var observacion = $("#observacion").val();
+
+
+    var jsonDatos = {"referencia": referencia
+        , "pedimento": pedimento
+        , "cliente": cliente
+        , "asunto": asunto
+        , "numerodeActa": numeroActa
+        , "motivo": motivo
+        , "responsable": responsable
+        , "monto": monto
+        , "despacho": despacho
+        , "notificacion": notificacion
+        , "vencimiento": vencimiento
+        , "contestacion": constestacion
+
+    };
+
+
+    console.log("llebagdo" + angular.toJson(jsonDatos, true))
     $.ajax({
         url: 'CnuevoRegistro',
         method: 'POST',
-        data: {"referencia": referencia
-            , "pedimento": pedimento
-            , "cliente": cliente
-            , "asunto": asunto
-            , "numerodeActa": numeroActa
-            , "motivo": motivo
-            , "responsable": responsable
-            , "estatus": estatus
-            , "monto": monto
-            , "notificacion": notificacion
-            , "vencimiento": vencimiento
-            , "contestacion": constestacion
-            , "plazoAutoridad": plazoAutoridad
-            , "comentario1": observacion
-        },
+        data: jsonDatos,
         success: function (request) {
-             alert(request);
+            alert(request);
             if (request == 0) {
-              //  $("#mensajedelnuevoregistro").html("ERROR AL REGISTRAR, FAVOR DE INTENTARLO DE NUEVO");
-             //   $("#modalinformacion").openModal();
+                //  $("#mensajedelnuevoregistro").html("ERROR AL REGISTRAR, FAVOR DE INTENTARLO DE NUEVO");
+                //   $("#modalinformacion").openModal();
             } else {
-              //  $("#mensajedelnuevoregistro").html("REGISTRADO CORRECTAMENTE");
-              //  $("#modalinformacion").openModal();
+                //  $("#mensajedelnuevoregistro").html("REGISTRADO CORRECTAMENTE");
+                //  $("#modalinformacion").openModal();
                 cancelar();
             }
         }
     });//fin de ajax
-    
-    console.log("saliendo") 
+
+    console.log("saliendo")
 }
 
 function cancelar() {

@@ -43,7 +43,7 @@ public class CnuevoRegistro extends HttpServlet {
 
         System.out.println("hola mundo do post");
 
-        em = Persistence.createEntityManagerFactory("Mimpo_TransportePU").createEntityManager();
+        em = Persistence.createEntityManagerFactory("Mimpo_TransporteDOWPU").createEntityManager();
         em.getTransaction().begin();
         //  HttpSession misession = request.getSession(true);
 
@@ -58,15 +58,18 @@ public class CnuevoRegistro extends HttpServlet {
         String monto = (String) request.getParameter("monto");
         String estatus = (String) request.getParameter("estatus");
         String notificacion = (String) request.getParameter("notificacion");
-        java.util.Date fecha = new Date();
+        //  java.util.Date fecha = new Date();
 
         String vencimiento = (String) request.getParameter("vencimiento");
         String contestacion = (String) request.getParameter("contestacion");
         String plazoAutoridad = (String) request.getParameter("plazoAutoridad");
         String comentario1 = (String) request.getParameter("comentario1");
+        String despacho = (String) request.getParameter("despacho");
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+        // SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
         String recientes = "Recienetes";
+
+        System.out.println("despachoo  " + despacho);
 
         ControlMultas clas = new ControlMultas();
         try {
@@ -76,13 +79,12 @@ public class CnuevoRegistro extends HttpServlet {
             clas.setAsunto(asunto);
             clas.setNumerodeActa(numerodeActa);
             clas.setMotivo(motivo);
-            clas.setResponsable(responsable);
-            clas.setEstatus(estatus);
+            clas.setResponsable(responsable);    
             clas.setMonto(monto);
-            clas.setNotificacion(fecha);
-            clas.setVencimiento(fecha);
-            clas.setContestacion(fecha);
-            clas.setPlazoAutoridad(fecha);
+            clas.setNotificacion(obtenerFecha(notificacion));
+            clas.setVencimiento(obtenerFecha(vencimiento));
+            clas.setContestacion(obtenerFecha(contestacion));
+            clas.setDespacho(obtenerFecha(despacho));      
             clas.setComentario1(comentario1);
             clas.setNombreSeccion(recientes);
             Gson g = new Gson();
@@ -93,9 +95,27 @@ public class CnuevoRegistro extends HttpServlet {
             em.close();
             response.getWriter().write("1");
         } catch (Exception e) {
+
+            System.out.println("error " + e);
             response.getWriter().write("0");
         }
 
+    }
+
+    public Date obtenerFecha(String dateInString) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = null;
+        try {
+
+            date = formatter.parse(dateInString);
+            System.out.println(date);
+            System.out.println(formatter.format(date));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return date;
     }
 
     /**

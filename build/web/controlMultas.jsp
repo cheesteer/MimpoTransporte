@@ -37,7 +37,7 @@
                     $('.datepicker').pickadate({
                         selectMonths: true, // Creates a dropdown to control month
                         selectYears: 15, // Creates a dropdown of 15 years to control year
-                        format: 'dd/mm/yyyy' 
+                        format: 'dd/mm/yyyy'
                     });
                     $('.modal-trigger').leanModal();
                 });
@@ -102,7 +102,7 @@
                     <a  class="collection-item black-text"  ng-click="pama()">Pama<span class="badge"></span></a>
                     <a  class="collection-item black-text"  ng-click="atrasadosSR()">Atrasados sin resolucion<span class="badge"></span></a>
                     <a  class="collection-item black-text"  ng-click="cD()">Ciudad Juárez<span class="badge"></span></a>
-                <!--   <a  class="collection-item black-text"  ng-click="pendientesNot()">Pendientes Notificaciones<span class="badge"></span></a>-->
+                    <!--   <a  class="collection-item black-text"  ng-click="pendientesNot()">Pendientes Notificaciones<span class="badge"></span></a>-->
                     <a  class="collection-item black-text"  ng-click="Recientes()">Recientes<span class="badge"></span></a>
                     <a  class="collection-item black-text"  ng-click="porVencer()">Por vencer<span class="badge"></span></a>
                 </div>
@@ -126,15 +126,16 @@
 
                 <!-- Modal Trigger -->
                 <div class="container">
-                <div class=" row"> 
-                    <div class="container offset-m4 col  m6 ">
-                        <a class=" waves-effect waves-mimpo   btn modal-trigger  blue " href="#modal1">Nuevo Registro</a>
+                    <div class=" row"> 
+                        <div class="container offset-m4 col  m6 ">
+                            <a class=" waves-effect waves-mimpo btn-small   btn modal-trigger  blue " href="#modal1">Nuevo Registro</a>
+
+                        </div>
                     </div>
                 </div>
-            </div>
                 <!-- Modal Structure -->
                 <div id="modal1" class="modal  modal-fixed-footer">
-                   
+
                     <div class="modal-content large">
                         <center><h2><a >Registrar Nueva Insidencia </a></h2></center>
                         <div class="row">
@@ -142,21 +143,21 @@
                                 <input value="" id="referencia" type="text" class="validate">
                                 <label class="active" for="Referencia">Referencia </label>
                             </div>
-                            
+
                             <div class="input-field col s3">
                                 <input value="" id="pedimento" type="text" class="validate">
                                 <label class="active" for="Pedimento">Pedimento </label>
                             </div>
                             <div class="input-field col s6">
-                                 <select name="Sucursal" ng-model="Sucursal">
-                            <option value="" disabled selected>Elije Cliente</option>
-                            <option value="Comercializadora188">COMERCIALIZADORA 1888, S.A. DE C.V.</option>
-                            <option value="importacionesPh">IMPORTACIONES PH, S.A. DE C.V.</option>
-                            <option value="placio">PALACIO IMPORTACIONES S.A. DE C.V.</option>
-                           </select>
+                                <select name="cliente" id="cliente" ng-model="Sucursal">
+                                    <option value="" disabled selected>Elije Cliente</option>
+                                    <option value="Comercializadora188">COMERCIALIZADORA 1888, S.A. DE C.V.</option>
+                                    <option value="importacionesPh">IMPORTACIONES PH, S.A. DE C.V.</option>
+                                    <option value="placio">PALACIO IMPORTACIONES S.A. DE C.V.</option>
+                                </select>
                             </div>
                         </div>
-                         <div class="row">
+                        <div class="row">
                             <div class="input-field col s3">
                                 <input value="" id="asunto" type="text" class="validate">
                                 <label class="active" for="asunto">Asunto </label>
@@ -171,14 +172,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-field col s3">
+                            <div class="input-field col s6">
                                 <input value="" id="responsable" type="text" class="validate">
                                 <label class="active" for="responsable">Responsable </label>
                             </div>
-                            <div class="input-field col s3">
-                                <input value="" id="estatus" type="text" class="validate">
-                                <label class="active" for="estatus">Estatus </label>
-                            </div>
+                            <!--   <div class="input-field col s3">
+                                   <input value="" id="estatus" type="text" class="validate">
+                                   <label class="active" for="estatus">Estatus </label>
+                               </div>-->
                             <div class="input-field col s6">
                                 <input value="" id="monto" type="text" class="validate">
                                 <label class="active" for="monto">Monto </label>
@@ -186,33 +187,33 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s3">
-                                <input value="" id="Despacho" type="text" class="validate">
-                                <label class="active" for="Despacho">Despacho </label>
+                                <input   id="despacho" type="date"   class="datepicker">
+                                <label class="active" for="despacho">Despacho </label>
                             </div>
                             <div class="input-field col s3">
                                 <label class="active" for="notificacion">Notificacion </label>
                                 <input value="" id="notificacion" type="date" class="datepicker">
-                                
+
                             </div>
                             <div class="input-field col s6">
-                                 <label class="active" for="vencimiento">Vencimiento </label>
+                                <label class="active" for="vencimiento">Vencimiento </label>
                                 <input value="" id="vencimiento" type="date" class="datepicker">
-                               
+
                             </div>
                         </div>
-                         <div class="row">
+                        <div class="row">
                             <div class="input-field col s3">
-                                <input value="" id="constestacion" type="text" class="validate">
+                                <input value="" id="constestacion" type="date" class="datepicker">
                                 <label class="active" for="constestacion">Constestacion </label>
                             </div>
-                            <div class="input-field col s3">
-                                <input value="" id="plazoAutoridad" type="text" class="validate">
-                                <label class="active" for="plazoAutoridad">Plazo Autoridad </label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input value="" id="observacion" type="text" class="validate">
-                                <label class="active" for="observacion">Observacion </label>
-                            </div>
+                            <!-- <div class="input-field col s3">
+                             <input value="" id="plazoAutoridad" type="text" class="validate">
+                             <label class="active" for="plazoAutoridad">Plazo Autoridad </label>
+                         </div>
+                         <div class="input-field col s6">
+                             <input value="" id="observacion" type="text" class="validate">
+                             <label class="active" for="observacion">Observacion </label>
+                         </div>-->
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -220,15 +221,15 @@
                         <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat" id="cancelarNuevoRegistro">Cerrar</a>
                     </div>
                 </div>
-                
-                
-                
-                
-                
-                
-                   <!-- Modal Structure -->
+
+
+
+
+
+
+                <!-- Modal Structure -->
                 <div id="mensajedelnuevoregistro" class="modal  modal-fixed-footer">
-                   
+
                     <div class="modal-content">
                         <center>Respuesta</center>
                         <div class="row">
@@ -236,23 +237,119 @@
                                 <input value="" id="referencia" type="text" class="validate">
                                 <label class="active" for="Referencia">Referencia </label>
                             </div>
-                            
+
                             <div class="input-field col s3">
                                 <input value="" id="pedimento" type="text" class="validate">
                                 <label class="active" for="Pedimento">Pedimento </label>
                             </div>
-                          
+
                         </div>
-                  
-                    
-                     
-                        
+
+
+
+
                     </div>
                     <div class="modal-footer">
                         <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="guardarNuevoRegistro">Guardar</a>
                         <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat" id="cancelarNuevoRegistro">Cerrar</a>
                     </div>
                 </div>
+
+
+
+
+
+
+                <div id="modalSeguimiento" class="modal  modal-fixed-footer">
+
+                    <div class="modal-content large">
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <select>
+                                    <option value="" disabled selected>Está de acuerdo con la autoridad? </option>
+                                    <option value="1">Seleccionar</option>
+                                    <option value="2">Si</option>
+                                    <option value="3">No</option>
+
+                                </select>
+                                <label>Materialize Select</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s3">
+                                <input value="" id="asunto" type="text" class="validate">
+                                <label class="active" for="asunto">Asunto </label>
+                            </div>
+                            
+                                <form action="#" class="input-field col s9" >
+                                    <div class="file-field input-field">
+                                        <div class="btn">
+                                            <span>File</span>
+                                            <input type="file">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text">
+                                        </div>
+                                    </div>
+                                </form>
+                             
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input value="" id="responsable" type="text" class="validate">
+                                <label class="active" for="responsable">Responsable </label>
+                            </div>
+                            <!--   <div class="input-field col s3">
+                                   <input value="" id="estatus" type="text" class="validate">
+                                   <label class="active" for="estatus">Estatus </label>
+                               </div>-->
+                            <div class="input-field col s6">
+                                <input value="" id="monto" type="text" class="validate">
+                                <label class="active" for="monto">Monto </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s3">
+                                <input   id="despacho" type="date"   class="datepicker">
+                                <label class="active" for="despacho">Despacho </label>
+                            </div>
+                            <div class="input-field col s3">
+                                <label class="active" for="notificacion">Notificacion </label>
+                                <input value="" id="notificacion" type="date" class="datepicker">
+
+                            </div>
+                            <div class="input-field col s6">
+                                <label class="active" for="vencimiento">Vencimiento </label>
+                                <input value="" id="vencimiento" type="date" class="datepicker">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s3">
+                                <input value="" id="constestacion" type="date" class="datepicker">
+                                <label class="active" for="constestacion">Constestacion </label>
+                            </div>
+                            <!-- <div class="input-field col s3">
+                             <input value="" id="plazoAutoridad" type="text" class="validate">
+                             <label class="active" for="plazoAutoridad">Plazo Autoridad </label>
+                         </div>
+                         <div class="input-field col s6">
+                             <input value="" id="observacion" type="text" class="validate">
+                             <label class="active" for="observacion">Observacion </label>
+                         </div>-->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="guardarNuevoRegistro">Guardar</a>
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat" id="cancelarNuevoRegistro">Cerrar</a>
+                    </div>
+                </div>
+
+
+
+
+
 
 
 
@@ -299,36 +396,36 @@
                                      </tr>
                                  </thead>-->
 
-                                <tbody   id="tBodytablaMultas">
-                                    <!--   <tr >
-                                           <td>{{multa.referencia}}</td>
-                                           <td>{{multa.cliente}}</td>
-                                           <td>{{multa.pedimento}}</td>
-                                           <td>{{multa.asunto}}</td>
-                                           <td>{{multa.numerodeActa}}</td>
-                                           <td>{{multa.motivo}}</td>
-                                           <td>{{multa.responsable}}</td>
-                                           <td>{{multa.estatus}}</td>
-                                           <td>{{multa.monto}}</td>
-                                           <td>{{multa.despacho}}</td>
-                                           <td>{{multa.notificacion}}</td>
-                                           <td>{{multa.vencimiento}}</td>
-                                           <td>{{multa.contestacion}}</td>
-                                           <td>{{multa.vencimiento4Meses}}</td>
-                                           <td>{{multa.asuntosnotificadosenCdJuarez}}</td>
-                                           <td>{{multa.plazoAutoridad}}</td>
-                                           <td>{{multa.notificacionResolucionDefefinitiva}}</td>
-                                           <td>{{multa.asuntosConcluidos}}</td>
-                                           <td>{{multa.numeroDeResolucionDefinitiva}}</td>
-                                           <td>{{multa.comentario1}}</td>
-                                           <td>{{multa.comentario2}}</td>
-                                           <td>{{multa.comentarioPama}}</td>
-                                       </tr>-->
-
-
-
-
-                                </tbody>
+                                <!--  <tbody   id="tBodytablaMultas">
+                                        <tr >
+                                             <td>{{multa.referencia}}</td>
+                                             <td>{{multa.cliente}}</td>
+                                             <td>{{multa.pedimento}}</td>
+                                             <td>{{multa.asunto}}</td>
+                                             <td>{{multa.numerodeActa}}</td>
+                                             <td>{{multa.motivo}}</td>
+                                             <td>{{multa.responsable}}</td>
+                                             <td>{{multa.estatus}}</td>
+                                             <td>{{multa.monto}}</td>
+                                             <td>{{multa.despacho}}</td>
+                                             <td>{{multa.notificacion}}</td>
+                                             <td>{{multa.vencimiento}}</td>
+                                             <td>{{multa.contestacion}}</td>
+                                             <td>{{multa.vencimiento4Meses}}</td>
+                                             <td>{{multa.asuntosnotificadosenCdJuarez}}</td>
+                                             <td>{{multa.plazoAutoridad}}</td>
+                                             <td>{{multa.notificacionResolucionDefefinitiva}}</td>
+                                             <td>{{multa.asuntosConcluidos}}</td>
+                                             <td>{{multa.numeroDeResolucionDefinitiva}}</td>
+                                             <td>{{multa.comentario1}}</td>
+                                             <td>{{multa.comentario2}}</td>
+                                             <td>{{multa.comentarioPama}}</td>
+                                         </tr> 
+  
+  
+  
+  
+                                  </tbody>-->
                             </table>
                         </div>
                     </div>

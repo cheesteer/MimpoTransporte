@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CObtenerMultass extends HttpServlet {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Mimpo_TransportePU");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Mimpo_TransporteDOWPU");
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,33 +40,49 @@ public class CObtenerMultass extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
- 
+
     }
 
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      response.setContentType("text/html;charset=UTF-8");
-        List resultList = emf.createEntityManager().createNativeQuery("select * from ControlMultas",ControlMultas.class ).getResultList();
-    Gson g =new Gson();
-        String toJson = g.toJson(resultList);
-//        System.out.println("json  " + toJson);
+        response.setContentType("text/html;charset=UTF-8");
+        String seccion = (String) request.getParameter("seccion");
+        List listaMultas;
+        System.out.println("secciones jajaja " + seccion);
+
+        if (seccion.equals("todos")) {
+            listaMultas = obtenerMultas();
+        } else {
+            listaMultas = obtenerMultasSeccion(seccion);
+        }
+
+        Gson g = new Gson();
+        String toJson = g.toJson(listaMultas);
+        System.out.println("json  de control de multas jajaja  " + toJson);
         response.getWriter().write(toJson);
-      
+
     }
- 
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         
+
     }
 
-     
+    public List obtenerMultasSeccion(String seccion) {
+        return emf.createEntityManager().createNativeQuery("select * from ControlMultas where NombreSeccion = ? ", ControlMultas.class).setParameter(1, seccion).getResultList();
+    }
+
+    public List obtenerMultas() {
+        System.out.println("obtenediendo de todos ajajaja ");
+        return emf.createEntityManager().createNativeQuery("select * from ControlMultas ", ControlMultas.class).getResultList();
+    }
+
     @Override
     public String getServletInfo() {
         return "Short description";
-    } 
+    }
 
     public void persist(Object object) {
         EntityManager em = emf.createEntityManager();

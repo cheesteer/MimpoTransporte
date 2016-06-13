@@ -13,16 +13,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Lenovo
+ * @author LMCM
  */
 @Entity
 @Table(name = "ControlMultas")
@@ -34,9 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ControlMultas.findByReferencia", query = "SELECT c FROM ControlMultas c WHERE c.referencia = :referencia"),
     @NamedQuery(name = "ControlMultas.findByCliente", query = "SELECT c FROM ControlMultas c WHERE c.cliente = :cliente"),
     @NamedQuery(name = "ControlMultas.findByPedimento", query = "SELECT c FROM ControlMultas c WHERE c.pedimento = :pedimento"),
-    @NamedQuery(name = "ControlMultas.findByAsunto", query = "SELECT c FROM ControlMultas c WHERE c.asunto = :asunto"),
     @NamedQuery(name = "ControlMultas.findByNumerodeActa", query = "SELECT c FROM ControlMultas c WHERE c.numerodeActa = :numerodeActa"),
-    @NamedQuery(name = "ControlMultas.findByMotivo", query = "SELECT c FROM ControlMultas c WHERE c.motivo = :motivo"),
     @NamedQuery(name = "ControlMultas.findByResponsable", query = "SELECT c FROM ControlMultas c WHERE c.responsable = :responsable"),
     @NamedQuery(name = "ControlMultas.findByEstatus", query = "SELECT c FROM ControlMultas c WHERE c.estatus = :estatus"),
     @NamedQuery(name = "ControlMultas.findByMonto", query = "SELECT c FROM ControlMultas c WHERE c.monto = :monto"),
@@ -48,37 +49,45 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ControlMultas.findByAsuntosnotificadosenCdJuarez", query = "SELECT c FROM ControlMultas c WHERE c.asuntosnotificadosenCdJuarez = :asuntosnotificadosenCdJuarez"),
     @NamedQuery(name = "ControlMultas.findByPlazoAutoridad", query = "SELECT c FROM ControlMultas c WHERE c.plazoAutoridad = :plazoAutoridad"),
     @NamedQuery(name = "ControlMultas.findByNotificacionResolucionDefefinitiva", query = "SELECT c FROM ControlMultas c WHERE c.notificacionResolucionDefefinitiva = :notificacionResolucionDefefinitiva"),
-    @NamedQuery(name = "ControlMultas.findByAsuntosConcluidos", query = "SELECT c FROM ControlMultas c WHERE c.asuntosConcluidos = :asuntosConcluidos"),
-    @NamedQuery(name = "ControlMultas.findByNumeroDeResolucionDefinitiva", query = "SELECT c FROM ControlMultas c WHERE c.numeroDeResolucionDefinitiva = :numeroDeResolucionDefinitiva"),
-    @NamedQuery(name = "ControlMultas.findByComentario1", query = "SELECT c FROM ControlMultas c WHERE c.comentario1 = :comentario1"),
-    @NamedQuery(name = "ControlMultas.findByComentario2", query = "SELECT c FROM ControlMultas c WHERE c.comentario2 = :comentario2"),
-    @NamedQuery(name = "ControlMultas.findByComentarioPama", query = "SELECT c FROM ControlMultas c WHERE c.comentarioPama = :comentarioPama")})
+    @NamedQuery(name = "ControlMultas.findByNumeroDeResolucionDefinitiva", query = "SELECT c FROM ControlMultas c WHERE c.numeroDeResolucionDefinitiva = :numeroDeResolucionDefinitiva")})
 public class ControlMultas implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id  @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "Id")
-    private Integer id;    
-    @Column(name = "Nombre_Seccion")
+    private Integer id;
+    @Size(max = 100)
+    @Column(name = "NombreSeccion")
     private String nombreSeccion;
+    @Size(max = 15)
     @Column(name = "Referencia")
     private String referencia;
+    @Size(max = 50)
     @Column(name = "Cliente")
     private String cliente;
+    @Size(max = 15)
     @Column(name = "Pedimento")
     private String pedimento;
+    @Lob
+    @Size(max = 2147483647)
     @Column(name = "Asunto")
     private String asunto;
+    @Size(max = 15)
     @Column(name = "Numero_de_Acta")
     private String numerodeActa;
+    @Lob
+    @Size(max = 2147483647)
     @Column(name = "Motivo")
     private String motivo;
+    @Size(max = 50)
     @Column(name = "Responsable")
     private String responsable;
+    @Size(max = 15)
     @Column(name = "Estatus")
     private String estatus;
+    @Size(max = 15)
     @Column(name = "Monto")
     private String monto;
     @Column(name = "Despacho")
@@ -93,27 +102,36 @@ public class ControlMultas implements Serializable {
     @Column(name = "Contestacion")
     @Temporal(TemporalType.TIMESTAMP)
     private Date contestacion;
-    @Column(name = "Vencimiento_4Meses")
+    @Column(name = "Vencimiento4Meses")
     @Temporal(TemporalType.TIMESTAMP)
     private Date vencimiento4Meses;
-    @Column(name = "Asuntos_notificados_en_Cd_Juarez")
+    @Column(name = "AsuntosnotificadosenCd_Juarez")
     @Temporal(TemporalType.TIMESTAMP)
     private Date asuntosnotificadosenCdJuarez;
-    @Column(name = "Plazo_Autoridad")
+    @Column(name = "PlazoAutoridad")
     @Temporal(TemporalType.TIMESTAMP)
     private Date plazoAutoridad;
-    @Column(name = "Notificacion_Resolucion_Defefinitiva")
+    @Column(name = "NotificacionResolucionDefefinitiva")
     @Temporal(TemporalType.TIMESTAMP)
     private Date notificacionResolucionDefefinitiva;
-    @Column(name = "Asuntos_Concluidos")
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "AsuntosConcluidos")
     private String asuntosConcluidos;
-    @Column(name = "Numero_De_Resolucion_Definitiva")
+    @Size(max = 50)
+    @Column(name = "NumeroDeResolucionDefinitiva")
     private String numeroDeResolucionDefinitiva;
+    @Lob
+    @Size(max = 2147483647)
     @Column(name = "Comentario1")
     private String comentario1;
+    @Lob
+    @Size(max = 2147483647)
     @Column(name = "Comentario2")
     private String comentario2;
-    @Column(name = "Comentario_Pama")
+    @Lob
+    @Size(max = 2147483647)
+    @Column(name = "ComentarioPama")
     private String comentarioPama;
 
     public ControlMultas() {

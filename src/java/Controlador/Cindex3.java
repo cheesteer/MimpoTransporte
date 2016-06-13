@@ -5,7 +5,7 @@
  */
 package Controlador;
 
-import Modelo.Transporte;
+//import Modelo.Transporte;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -88,27 +88,27 @@ public class Cindex3 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        StringBuilder buffer = new StringBuilder();
-        BufferedReader reader = request.getReader();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            buffer.append(line);
-        }
-  Gson g = new Gson();
-        TransporteObjecto t = new Gson().fromJson(buffer.toString(), TransporteObjecto.class);
-        
-         String toJson2 = g.toJson(t);
-         System.out.println("parameter" + toJson2);
-       Transporte trans =crearTransporte(t);
-       
-        persist(trans);
-        
-
-     
-        String toJson = g.toJson(trans);
-        //String data = buffer.toString();
-        System.out.println("parameter" + toJson);
-        response.getWriter().write("RECIBIDO EN EL CONTROLER" + toJson);
+//        StringBuilder buffer = new StringBuilder();
+//        BufferedReader reader = request.getReader();
+//        String line;
+//        while ((line = reader.readLine()) != null) {
+//            buffer.append(line);
+//        }
+//  Gson g = new Gson();
+//        TransporteObjecto t = new Gson().fromJson(buffer.toString(), TransporteObjecto.class);
+//        
+//         String toJson2 = g.toJson(t);
+//         System.out.println("parameter" + toJson2);
+//       Transporte trans =crearTransporte(t);
+//       
+//        persist(trans);
+//        
+//
+//     
+//        String toJson = g.toJson(trans);
+//        //String data = buffer.toString();
+//        System.out.println("parameter" + toJson);
+//        response.getWriter().write("RECIBIDO EN EL CONTROLER" + toJson);
 
     }
 
@@ -132,43 +132,43 @@ public class Cindex3 extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public void persist(Transporte object) {
-        EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.persist(object);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
-        }
-    }
-
-    private Transporte crearTransporte(TransporteObjecto tt) {
-      
-        Transporte t = new Transporte();
-        t.setSucursal(tt.getSucursal());
-        t.setReferencias(tt.getReferencias());
-        t.setEmbarquesporcita(tt.getEmbarquesporcita());
-        t.setEquipoutilizado(tt.getEquipoutilizado());
-        t.setConfiguracion(tt.getConfiguracion());
-        t.setPlacas(tt.getPlacas());
-        t.setAlmacen(tt.getAlmacen());
-        t.setIniciodetransito(obtenerFecha(tt.getIniciodetransito()));
-        t.setNumeroCita(tt.getNumeroCita());
-        t.setHoracita(obtenerFecha(tt.getHoracita()));
-        t.setFechaarribo(obtenerFecha(tt.getFechaarribo()));
-        t.setIniciodescarga(obtenerFecha(tt.getIniciodescarga()));
-        t.setFindescarga(obtenerFecha(tt.getFindescarga()));
-        t.setDiasEspera(obtenerFecha(tt.getDiasEspera()));
-       // t.setTiempoEsperadescarga(obtenerFecha(tt.getTiempoEsperadescarga()));
-        t.setTiempodescarga(obtenerFecha(tt.getTiempodescarga()));
-        //t.setTiempoUnidadAlmacen(obtenerFecha(tt.getTiempoUnidadAlmacen()));
-        return t;
-        
-        
-    }
+//    public void persist(Transporte object) {
+//        EntityManager em = emf.createEntityManager();
+//        try {
+//            em.getTransaction().begin();
+//            em.persist(object);
+//            em.getTransaction().commit();
+//        } catch (Exception e) {
+//            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+//            em.getTransaction().rollback();
+//        } finally {
+//            em.close();
+//        }
+//    }
+//
+//    private Transporte crearTransporte(TransporteObjecto tt) {
+//      
+//        Transporte t = new Transporte();
+//        t.setSucursal(tt.getSucursal());
+//        t.setReferencias(tt.getReferencias());
+//        t.setEmbarquesporcita(tt.getEmbarquesporcita());
+//        t.setEquipoutilizado(tt.getEquipoutilizado());
+//        t.setConfiguracion(tt.getConfiguracion());
+//        t.setPlacas(tt.getPlacas());
+//        t.setAlmacen(tt.getAlmacen());
+//        t.setIniciodetransito(obtenerFecha(tt.getIniciodetransito()));
+//        t.setNumeroCita(tt.getNumeroCita());
+//        t.setHoracita(obtenerFecha(tt.getHoracita()));
+//        t.setFechaarribo(obtenerFecha(tt.getFechaarribo()));
+//        t.setIniciodescarga(obtenerFecha(tt.getIniciodescarga()));
+//        t.setFindescarga(obtenerFecha(tt.getFindescarga()));
+//        t.setDiasEspera(obtenerFecha(tt.getDiasEspera()));
+//       // t.setTiempoEsperadescarga(obtenerFecha(tt.getTiempoEsperadescarga()));
+//        t.setTiempodescarga(obtenerFecha(tt.getTiempodescarga()));
+//        //t.setTiempoUnidadAlmacen(obtenerFecha(tt.getTiempoUnidadAlmacen()));
+//        return t;
+//        
+//        
+//    }
 
 }
