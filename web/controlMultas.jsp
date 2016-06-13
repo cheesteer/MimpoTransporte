@@ -267,77 +267,71 @@
                         <div class="row">
                             <div class="input-field col s12">
                                 <select>
-                                    <option value="" disabled selected>Está de acuerdo con la autoridad? </option>
-                                    <option value="1">Seleccionar</option>
+                                    <option value=""selected> Seleccionar</option>                                   
                                     <option value="2">Si</option>
                                     <option value="3">No</option>
 
                                 </select>
-                                <label>Materialize Select</label>
+                                <label>Está de acuerdo con la autoridad?</label>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-field col s3">
-                                <input value="" id="asunto" type="text" class="validate">
-                                <label class="active" for="asunto">Asunto </label>
-                            </div>
-                            
-                                <form action="#" class="input-field col s9" >
-                                    <div class="file-field input-field">
-                                        <div class="btn">
-                                            <span>File</span>
-                                            <input type="file">
-                                        </div>
-                                        <div class="file-path-wrapper">
-                                            <input class="file-path validate" type="text">
-                                        </div>
+
+
+                            <form action="#" class="input-field col s12" >
+                                <label class="active" for="asunto">Numero de oficio  </label>
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>File</span>
+                                        <input type="file">
                                     </div>
-                                </form>
-                             
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text">
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
                         <div class="row">
-                            <div class="input-field col s6">
-                                <input value="" id="responsable" type="text" class="validate">
-                                <label class="active" for="responsable">Responsable </label>
-                            </div>
-                            <!--   <div class="input-field col s3">
-                                   <input value="" id="estatus" type="text" class="validate">
-                                   <label class="active" for="estatus">Estatus </label>
-                               </div>-->
-                            <div class="input-field col s6">
-                                <input value="" id="monto" type="text" class="validate">
-                                <label class="active" for="monto">Monto </label>
-                            </div>
+
+
+                            <form action="#" class="input-field col s12" >
+                                <label class="active" for="asunto">Numero de crédito fiscal   </label>
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>File</span>
+                                        <input type="file">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text">
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
                         <div class="row">
-                            <div class="input-field col s3">
-                                <input   id="despacho" type="date"   class="datepicker">
-                                <label class="active" for="despacho">Despacho </label>
-                            </div>
-                            <div class="input-field col s3">
-                                <label class="active" for="notificacion">Notificacion </label>
-                                <input value="" id="notificacion" type="date" class="datepicker">
 
-                            </div>
-                            <div class="input-field col s6">
-                                <label class="active" for="vencimiento">Vencimiento </label>
-                                <input value="" id="vencimiento" type="date" class="datepicker">
 
-                            </div>
+                            <form action="#" class="input-field col s12" >
+                                <label class="active" for="asunto">Numero de cheque  </label>
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>File</span>
+                                        <input type="file">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text">
+                                    </div>
+                                </div>
+
+                            </form>
+
                         </div>
                         <div class="row">
                             <div class="input-field col s3">
                                 <input value="" id="constestacion" type="date" class="datepicker">
-                                <label class="active" for="constestacion">Constestacion </label>
-                            </div>
-                            <!-- <div class="input-field col s3">
-                             <input value="" id="plazoAutoridad" type="text" class="validate">
-                             <label class="active" for="plazoAutoridad">Plazo Autoridad </label>
-                         </div>
-                         <div class="input-field col s6">
-                             <input value="" id="observacion" type="text" class="validate">
-                             <label class="active" for="observacion">Observacion </label>
-                         </div>-->
+                                <label class="active" for="constestacion">Fecha de deposito </label>
+                            </div>                       
                         </div>
                     </div>
                     <div class="modal-footer">
