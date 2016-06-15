@@ -63,6 +63,7 @@ app.controller("myCtrl", function ($scope, $http) {
 app.controller("controlMultasCtrl", function ($scope, $http, $compile, $q) {
     var trHtml = "";
     var headHtml = "";
+    var model;
 
 
     var tabla = angular.element(document.querySelector('#tablaMultas'));
@@ -160,57 +161,173 @@ app.controller("controlMultasCtrl", function ($scope, $http, $compile, $q) {
 
 
     $scope.concluidos = function () {
+
+//        headHtml += "<thead>";
+//        headHtml += "<tr class='center - align'>";
+//        headHtml += "<th data-field='Referencia' >Referencia</th>";
+//        headHtml += "<th data-field='Cliente'>Cliente</th>";
+//        headHtml += "<th data-field='Pedimento'>Pedimento</th>";
+//        headHtml += "<th data-field='Asunto'>Asunto</th>";
+//        headHtml += "<th data-field='Numero_Acta'>Numero De Acta</th>";
+//        headHtml += "<th data-field='Motivo'>Motivo</th>";
+//        headHtml += "<th data-field='Responsable'>Responsable</th>";
+//        headHtml += "<th data-field='Estatus'>Estatus</th>";
+//        headHtml += "<th data-field='Monto'>Monto</th>";
+//        headHtml += "<th data-field='Despacho'>Despacho</th>";
+//        headHtml += "<th data-field='Notificacion'>Notificacion </th>";
+//        headHtml += "<th data-field='Vencimiento'>Vencimiento</th> ";
+//        headHtml += "<th data-field='Contestacion'>Contestacion</th>";
+//        headHtml += "<th data-field='Notificacion_resolucion_definitiva'>Notificacion Resolucion Definitiva</th>";
+//        headHtml += "<th data-field='Asuntos_concluidos'>Asuntos concluidos</th>";
+//        headHtml += "<th data-field='Numero_de_resolucion_definitiva'>Numero de resolucion definitiva</th>";
+//        head.append(headHtml);
+//        $q.when(obtenerDatos("concluidos"), function (lista) {
+//            for (var i = 0; i < lista.length; i++) {
+//                if (lista[i].nombreSeccion == "Concluidas")
+//                {
+//                    trHtml += "<tr>";
+//                    trHtml += "<td>" + lista[i].referencia + "</td>";
+//                    trHtml += "<td>" + lista[i].cliente + "</td>";
+//                    trHtml += "<td>" + lista[i].pedimento + "</td>";
+//                    trHtml += "<td>" + lista[i].asunto + "</td>";
+//                    trHtml += "<td>" + lista[i].numerodeActa + "</td>";
+//                    trHtml += "<td>" + lista[i].motivo + "</td>";
+//                    trHtml += "<td>" + lista[i].responsable + "</td>";
+//                    trHtml += "<td>" + lista[i].estatus + "</td>";
+//                    trHtml += "<td>" + lista[i].monto + "</td>";
+//                    trHtml += "<td>" + lista[i].despacho + "</td>";
+//                    trHtml += "<td>" + lista[i].notificacion + "</td>";
+//                    trHtml += "<td>" + lista[i].vencimiento + "</td>";
+//                    trHtml += "<td>" + lista[i].contestacion + "</td>";
+//                    trHtml += "<td>" + lista[i].notificacionResolucionDefefinitiva + "</td>";
+//                    trHtml += "<td>" + lista[i].asuntosConcluidos + "</td>";
+//                    trHtml += "<td>" + lista[i].numeroDeResolucionDefinitiva + "</td>";
+//                    trHtml += "</tr>";
+//                }
+//            }
+//            body.append(trHtml);
+//        })
+
+
+        console.log("recientes")
+        headHtml = ""
+        trHtml = "";
+        tabla.html("");
         headHtml += "<thead>";
         headHtml += "<tr class='center - align'>";
+        headHtml += "<th data-field='Plazo_Autoridad'>Seguimiento</th>";
         headHtml += "<th data-field='Referencia' >Referencia</th>";
-        headHtml += "<th data-field='Cliente'>Cliente</th>";
         headHtml += "<th data-field='Pedimento'>Pedimento</th>";
+        headHtml += "<th data-field='Cliente'>Cliente</th>";
         headHtml += "<th data-field='Asunto'>Asunto</th>";
         headHtml += "<th data-field='Numero_Acta'>Numero De Acta</th>";
         headHtml += "<th data-field='Motivo'>Motivo</th>";
         headHtml += "<th data-field='Responsable'>Responsable</th>";
-        headHtml += "<th data-field='Estatus'>Estatus</th>";
-        headHtml += "<th data-field='Monto'>Monto</th>";
+        headHtml += "<th data-field='Monto'>Monto </th>";
         headHtml += "<th data-field='Despacho'>Despacho</th>";
-        headHtml += "<th data-field='Notificacion'>Notificacion </th>";
-        headHtml += "<th data-field='Vencimiento'>Vencimiento</th> ";
+        headHtml += " <th data-field='Notificacion'>Notificacion</th>";
+        headHtml += "<th data-field='Vencimiento'>Vencimiento</th>";
         headHtml += "<th data-field='Contestacion'>Contestacion</th>";
-        headHtml += "<th data-field='Notificacion_resolucion_definitiva'>Notificacion Resolucion Definitiva</th>";
-        headHtml += "<th data-field='Asuntos_concluidos'>Asuntos concluidos</th>";
-        headHtml += "<th data-field='Numero_de_resolucion_definitiva'>Numero de resolucion definitiva</th>";
-        head.append(headHtml);
-        $q.when(obtenerDatos("concluidos"), function (lista) {
+
+        // headHtml += "<th data-field='Comentario1'>Comentario 1 </th>";
+        tabla.append(headHtml);
+        trHtml += "<tbody>";
+        $q.when(obtenerDatos("Concluido"), function (lista) {
             for (var i = 0; i < lista.length; i++) {
-                if (lista[i].nombreSeccion == "Concluidas")
-                {
-                    trHtml += "<tr>";
-                    trHtml += "<td>" + lista[i].referencia + "</td>";
-                    trHtml += "<td>" + lista[i].cliente + "</td>";
-                    trHtml += "<td>" + lista[i].pedimento + "</td>";
-                    trHtml += "<td>" + lista[i].asunto + "</td>";
-                    trHtml += "<td>" + lista[i].numerodeActa + "</td>";
-                    trHtml += "<td>" + lista[i].motivo + "</td>";
-                    trHtml += "<td>" + lista[i].responsable + "</td>";
-                    trHtml += "<td>" + lista[i].estatus + "</td>";
-                    trHtml += "<td>" + lista[i].monto + "</td>";
-                    trHtml += "<td>" + lista[i].despacho + "</td>";
-                    trHtml += "<td>" + lista[i].notificacion + "</td>";
-                    trHtml += "<td>" + lista[i].vencimiento + "</td>";
-                    trHtml += "<td>" + lista[i].contestacion + "</td>";
-                    trHtml += "<td>" + lista[i].notificacionResolucionDefefinitiva + "</td>";
-                    trHtml += "<td>" + lista[i].asuntosConcluidos + "</td>";
-                    trHtml += "<td>" + lista[i].numeroDeResolucionDefinitiva + "</td>";
-                    trHtml += "</tr>";
-                }
+
+                var referencia = angular.isDefined(lista[i].referencia) == true ? lista[i].referencia : "";
+                var cliente = angular.isDefined(lista[i].cliente) == true ? lista[i].cliente : "";
+                var pedimento = angular.isDefined(lista[i].pedimento) == true ? lista[i].pedimento : "";
+                var asunto = angular.isDefined(lista[i].asunto) == true ? lista[i].asunto : "";
+                var numerodeActa = angular.isDefined(lista[i].numerodeActa) == true ? lista[i].numerodeActa : "";
+                var motivo = angular.isDefined(lista[i].motivo) == true ? lista[i].motivo : "";
+                var responsable = angular.isDefined(lista[i].responsable) == true ? lista[i].responsable : "";
+                // var estatus = angular.isDefined(lista[i].estatus) == true ? lista[i].estatus : "";
+                var monto = angular.isDefined(lista[i].monto) == true ? lista[i].monto : "";
+                var despacho = angular.isDefined(lista[i].despacho) == true ? lista[i].despacho : "";
+                var notificacion = angular.isDefined(lista[i].notificacion) == true ? lista[i].notificacion : "";
+                var contestacion = angular.isDefined(lista[i].contestacion) == true ? lista[i].contestacion : "";
+                var vencimiento = angular.isDefined(lista[i].vencimiento) == true ? lista[i].vencimiento : "";
+
+                trHtml += "<tr>";
+                trHtml += '<td id=' + lista[i].id + '><div   class="waves-effect waves-mimpo btn-small   btn modal-trigger    green"  >Finalizado</div></td>';
+                trHtml += "<td>" + referencia + "</td>";
+                trHtml += "<td>" + pedimento + "</td>";
+                trHtml += "<td>" + cliente + "</td>";
+                trHtml += "<td>" + asunto + "</td>";
+                trHtml += "<td>" + numerodeActa + "</td>";
+                trHtml += "<td>" + motivo + "</td>";
+                trHtml += "<td>" + responsable + "</td>";
+                trHtml += "<td>" + monto + "</td>";
+                trHtml += "<td>" + despacho + "</td>";
+                trHtml += "<td>" + notificacion + "</td>";
+                trHtml += "<td>" + vencimiento + "</td>";
+                trHtml += "<td>" + contestacion + "</td>";
+
+
+                trHtml += "</tr>";
+
             }
-            body.append(trHtml);
+            trHtml += "<tbody>";
+            tabla.append($compile(trHtml)($scope));
         })
+
     }
 
 
     $scope.pama = function () {
+//        headHtml += "<thead>";
+//        headHtml += "<tr class='center - align'>";
+//        headHtml += "<th data-field='Referencia' >Referencia</th>";
+//        headHtml += "<th data-field='Pedimento'>Pedimento</th>";
+//        headHtml += "<th data-field='Cliente'>Cliente</th>";
+//        headHtml += "<th data-field='Asunto'>Asunto</th>";
+//        headHtml += "<th data-field='Numero_Acta'>Numero De Acta</th>";
+//        headHtml += "<th data-field='Motivo'>Motivo</th>";
+//        headHtml += "<th data-field='Responsable'>Responsable</th>";
+//        headHtml += "<th data-field='Monto'>Monto</th>";
+//        headHtml += "<th data-field='Despacho'>Despacho</th>";
+//        headHtml += " <th data-field='Notificacion'>Notificacion</th>";
+//        headHtml += "<th data-field='Vencimiento'>Vencimiento</th>";
+//        headHtml += "<th data-field='Contestacion'>Contestacion</th>";
+//        //   headHtml += "<th data-field='Plazo_Autoridad'> Plazo Autoridad</th>";
+//        //   headHtml += "<th data-field='Numero_de_resolucion_definitiva'>Numero de resolucion definitiva</th>";
+//        //   headHtml += "<th data-field='ComentarioPama'>Comentario Pama </th>";
+//        head.append(headHtml);
+//        $q.when(obtenerDatos("pama"), function (lista) {
+//            for (var i = 0; i < lista.length; i++) {
+//                if (lista[i].asunto == "PAMA")
+//                {
+//                    trHtml += "<tr>";
+//                    trHtml += "<td>" + lista[i].referencia + "</td>";
+//                    trHtml += "<td>" + lista[i].pedimento + "</td>";
+//                    trHtml += "<td>" + lista[i].cliente + "</td>";
+//                    trHtml += "<td>" + lista[i].asunto + "</td>";
+//                    trHtml += "<td>" + lista[i].numerodeActa + "</td>";
+//                    trHtml += "<td>" + lista[i].motivo + "</td>";
+//                    trHtml += "<td>" + lista[i].responsable + "</td>";
+//                    trHtml += "<td>" + lista[i].monto + "</td>";
+//                    trHtml += "<td>" + lista[i].despacho + "</td>";
+//                    trHtml += "<td>" + lista[i].notificacion + "</td>";
+//                    trHtml += "<td>" + lista[i].vencimiento + "</td>";
+//                    trHtml += "<td>" + lista[i].contestacion + "</td>";
+//                    // trHtml += "<td>" + lista[i].plazoAutoridad + "' </td>";
+//                    //  trHtml += "<td>" + lista[i].numeroDeResolucionDefinitiva + "</td>";
+//                    //   trHtml += "<td>" + lista[i].comentarioPama + "</td>";
+//                    trHtml += "</tr>";
+//                }
+//            }
+//            body.append(trHtml);
+//        })
+
+
+        console.log("recientes")
+        headHtml = ""
+        trHtml = "";
+        tabla.html("");
         headHtml += "<thead>";
         headHtml += "<tr class='center - align'>";
+        headHtml += "<th data-field='Plazo_Autoridad'>Seguimiento</th>";
         headHtml += "<th data-field='Referencia' >Referencia</th>";
         headHtml += "<th data-field='Pedimento'>Pedimento</th>";
         headHtml += "<th data-field='Cliente'>Cliente</th>";
@@ -218,85 +335,164 @@ app.controller("controlMultasCtrl", function ($scope, $http, $compile, $q) {
         headHtml += "<th data-field='Numero_Acta'>Numero De Acta</th>";
         headHtml += "<th data-field='Motivo'>Motivo</th>";
         headHtml += "<th data-field='Responsable'>Responsable</th>";
-        headHtml += "<th data-field='Monto'>Monto</th>";
+        headHtml += "<th data-field='Monto'>Monto </th>";
         headHtml += "<th data-field='Despacho'>Despacho</th>";
         headHtml += " <th data-field='Notificacion'>Notificacion</th>";
         headHtml += "<th data-field='Vencimiento'>Vencimiento</th>";
         headHtml += "<th data-field='Contestacion'>Contestacion</th>";
-        //   headHtml += "<th data-field='Plazo_Autoridad'> Plazo Autoridad</th>";
-        //   headHtml += "<th data-field='Numero_de_resolucion_definitiva'>Numero de resolucion definitiva</th>";
-        //   headHtml += "<th data-field='ComentarioPama'>Comentario Pama </th>";
-        head.append(headHtml);
-        $q.when(obtenerDatos("pama"), function (lista) {
+
+        // headHtml += "<th data-field='Comentario1'>Comentario 1 </th>";
+        tabla.append(headHtml);
+        trHtml += "<tbody>";
+        $q.when(obtenerDatos("PAMA"), function (lista) {
             for (var i = 0; i < lista.length; i++) {
-                if (lista[i].asunto == "PAMA")
-                {
-                    trHtml += "<tr>";
-                    trHtml += "<td>" + lista[i].referencia + "</td>";
-                    trHtml += "<td>" + lista[i].pedimento + "</td>";
-                    trHtml += "<td>" + lista[i].cliente + "</td>";
-                    trHtml += "<td>" + lista[i].asunto + "</td>";
-                    trHtml += "<td>" + lista[i].numerodeActa + "</td>";
-                    trHtml += "<td>" + lista[i].motivo + "</td>";
-                    trHtml += "<td>" + lista[i].responsable + "</td>";
-                    trHtml += "<td>" + lista[i].monto + "</td>";
-                    trHtml += "<td>" + lista[i].despacho + "</td>";
-                    trHtml += "<td>" + lista[i].notificacion + "</td>";
-                    trHtml += "<td>" + lista[i].vencimiento + "</td>";
-                    trHtml += "<td>" + lista[i].contestacion + "</td>";
-                    // trHtml += "<td>" + lista[i].plazoAutoridad + "' </td>";
-                    //  trHtml += "<td>" + lista[i].numeroDeResolucionDefinitiva + "</td>";
-                    //   trHtml += "<td>" + lista[i].comentarioPama + "</td>";
-                    trHtml += "</tr>";
-                }
+
+                var referencia = angular.isDefined(lista[i].referencia) == true ? lista[i].referencia : "";
+                var cliente = angular.isDefined(lista[i].cliente) == true ? lista[i].cliente : "";
+                var pedimento = angular.isDefined(lista[i].pedimento) == true ? lista[i].pedimento : "";
+                var asunto = angular.isDefined(lista[i].asunto) == true ? lista[i].asunto : "";
+                var numerodeActa = angular.isDefined(lista[i].numerodeActa) == true ? lista[i].numerodeActa : "";
+                var motivo = angular.isDefined(lista[i].motivo) == true ? lista[i].motivo : "";
+                var responsable = angular.isDefined(lista[i].responsable) == true ? lista[i].responsable : "";
+                // var estatus = angular.isDefined(lista[i].estatus) == true ? lista[i].estatus : "";
+                var monto = angular.isDefined(lista[i].monto) == true ? lista[i].monto : "";
+                var despacho = angular.isDefined(lista[i].despacho) == true ? lista[i].despacho : "";
+                var notificacion = angular.isDefined(lista[i].notificacion) == true ? lista[i].notificacion : "";
+                var contestacion = angular.isDefined(lista[i].contestacion) == true ? lista[i].contestacion : "";
+                var vencimiento = angular.isDefined(lista[i].vencimiento) == true ? lista[i].vencimiento : "";
+
+                trHtml += "<tr>";
+                trHtml += '<td id=' + lista[i].id + '><div ng-click="darSeguimiento($event)" class="waves-effect waves-mimpo btn-small   btn modal-trigger    cyan"  >PAMA</div></td>';
+                trHtml += "<td>" + referencia + "</td>";
+                trHtml += "<td>" + pedimento + "</td>";
+                trHtml += "<td>" + cliente + "</td>";
+                trHtml += "<td>" + asunto + "</td>";
+                trHtml += "<td>" + numerodeActa + "</td>";
+                trHtml += "<td>" + motivo + "</td>";
+                trHtml += "<td>" + responsable + "</td>";
+                trHtml += "<td>" + monto + "</td>";
+                trHtml += "<td>" + despacho + "</td>";
+                trHtml += "<td>" + notificacion + "</td>";
+                trHtml += "<td>" + vencimiento + "</td>";
+                trHtml += "<td>" + contestacion + "</td>";
+
+
+                trHtml += "</tr>";
+
             }
-            body.append(trHtml);
+            trHtml += "<tbody>";
+            tabla.append($compile(trHtml)($scope));
         })
     }
     $scope.atrasadosSR = function () {
+//        headHtml += "<thead>";
+//        headHtml += "<tr class='center - align'>";
+//        headHtml += "<th data-field='Referencia' >Referencia</th>";
+//        headHtml += "<th data-field='Cliente'>Cliente</th>";
+//        headHtml += "<th data-field='Pedimento'>Pedimento</th>";
+//        headHtml += "<th data-field='Asunto'>Asunto</th>";
+//        headHtml += "<th data-field='Numero_Acta'>Numero De Acta</th>";
+//        headHtml += "<th data-field='Motivo'>Motivo</th>";
+//        headHtml += "<th data-field='Estatus'>Estatus</th>";
+//        headHtml += "<th data-field='Despacho'>Despacho</th>";
+//        headHtml += " <th data-field='Notificacion'>Notificacion</th>";
+//        headHtml += "<th data-field='Vencimiento'>Vencimiento</th>";
+//        headHtml += "<th data-field='Contestacion'>Contestacion</th>";
+//        headHtml += "<th data-field='Plazo_Autoridad'> Plazo Autoridad</th>";
+//        headHtml += "<th data-field='Asuntos_concluidos'>Asuntos concluidos</th>";
+//        headHtml += "<th data-field='Numero_de_resolucion_definitiva'>Numero de resolucion definitiva</th>";
+//        headHtml += "<th data-field='Comentario1'>Comentario 1 </th>";
+//        head.html(headHtml);
+//        $q.when(obtenerDatos("atrasados"), function (lista) {
+//            for (var i = 0; i < lista.length; i++) {
+//                if (lista[i].nombreSeccion == "Atrasados sin resolucion")
+//                {
+//                    trHtml += "<tr>";
+//                    trHtml += "<td>" + lista[i].referencia + "</td>";
+//                    trHtml += "<td>" + lista[i].cliente + "</td>";
+//                    trHtml += "<td>" + lista[i].pedimento + "</td>";
+//                    trHtml += "<td>" + lista[i].asunto + "</td>";
+//                    trHtml += "<td>" + lista[i].numerodeActa + "</td>";
+//                    trHtml += "<td>" + lista[i].motivo + "</td>";
+//                    trHtml += "<td>" + lista[i].estatus + "</td>";
+//                    trHtml += "<td>" + lista[i].despacho + "</td>";
+//                    trHtml += "<td>" + lista[i].notificacion + "</td>";
+//                    trHtml += "<td>" + lista[i].vencimiento + "</td>";
+//                    trHtml += "<td>" + lista[i].contestacion + "</td>";
+//                    trHtml += "<td>" + lista[i].plazoAutoridad + "' </td>";
+//                    trHtml += "<td>" + lista[i].asuntosConcluidos + "</td>";
+//                    trHtml += "<td>" + lista[i].numeroDeResolucionDefinitiva + "</td>";
+//                    trHtml += "<td>" + lista[i].comentario1 + "</td>";
+//                    trHtml += "</tr>";
+//                }
+//            }
+//            body.append(trHtml);
+//        })
+
+
+
+        headHtml = ""
+        trHtml = "";
+        tabla.html("");
         headHtml += "<thead>";
         headHtml += "<tr class='center - align'>";
+        headHtml += "<th data-field='Plazo_Autoridad'>Seguimiento</th>";
         headHtml += "<th data-field='Referencia' >Referencia</th>";
-        headHtml += "<th data-field='Cliente'>Cliente</th>";
         headHtml += "<th data-field='Pedimento'>Pedimento</th>";
+        headHtml += "<th data-field='Cliente'>Cliente</th>";
         headHtml += "<th data-field='Asunto'>Asunto</th>";
         headHtml += "<th data-field='Numero_Acta'>Numero De Acta</th>";
         headHtml += "<th data-field='Motivo'>Motivo</th>";
-        headHtml += "<th data-field='Estatus'>Estatus</th>";
+        headHtml += "<th data-field='Responsable'>Responsable</th>";
+        headHtml += "<th data-field='Monto'>Monto </th>";
         headHtml += "<th data-field='Despacho'>Despacho</th>";
         headHtml += " <th data-field='Notificacion'>Notificacion</th>";
         headHtml += "<th data-field='Vencimiento'>Vencimiento</th>";
         headHtml += "<th data-field='Contestacion'>Contestacion</th>";
-        headHtml += "<th data-field='Plazo_Autoridad'> Plazo Autoridad</th>";
-        headHtml += "<th data-field='Asuntos_concluidos'>Asuntos concluidos</th>";
-        headHtml += "<th data-field='Numero_de_resolucion_definitiva'>Numero de resolucion definitiva</th>";
-        headHtml += "<th data-field='Comentario1'>Comentario 1 </th>";
-        head.html(headHtml);
-        $q.when(obtenerDatos("atrasados"), function (lista) {
+
+        // headHtml += "<th data-field='Comentario1'>Comentario 1 </th>";
+        tabla.append(headHtml);
+        trHtml += "<tbody>";
+        $q.when(obtenerDatos("Sin resolucion"), function (lista) {
             for (var i = 0; i < lista.length; i++) {
-                if (lista[i].nombreSeccion == "Atrasados sin resolucion")
-                {
-                    trHtml += "<tr>";
-                    trHtml += "<td>" + lista[i].referencia + "</td>";
-                    trHtml += "<td>" + lista[i].cliente + "</td>";
-                    trHtml += "<td>" + lista[i].pedimento + "</td>";
-                    trHtml += "<td>" + lista[i].asunto + "</td>";
-                    trHtml += "<td>" + lista[i].numerodeActa + "</td>";
-                    trHtml += "<td>" + lista[i].motivo + "</td>";
-                    trHtml += "<td>" + lista[i].estatus + "</td>";
-                    trHtml += "<td>" + lista[i].despacho + "</td>";
-                    trHtml += "<td>" + lista[i].notificacion + "</td>";
-                    trHtml += "<td>" + lista[i].vencimiento + "</td>";
-                    trHtml += "<td>" + lista[i].contestacion + "</td>";
-                    trHtml += "<td>" + lista[i].plazoAutoridad + "' </td>";
-                    trHtml += "<td>" + lista[i].asuntosConcluidos + "</td>";
-                    trHtml += "<td>" + lista[i].numeroDeResolucionDefinitiva + "</td>";
-                    trHtml += "<td>" + lista[i].comentario1 + "</td>";
-                    trHtml += "</tr>";
-                }
+
+                var referencia = angular.isDefined(lista[i].referencia) == true ? lista[i].referencia : "";
+                var cliente = angular.isDefined(lista[i].cliente) == true ? lista[i].cliente : "";
+                var pedimento = angular.isDefined(lista[i].pedimento) == true ? lista[i].pedimento : "";
+                var asunto = angular.isDefined(lista[i].asunto) == true ? lista[i].asunto : "";
+                var numerodeActa = angular.isDefined(lista[i].numerodeActa) == true ? lista[i].numerodeActa : "";
+                var motivo = angular.isDefined(lista[i].motivo) == true ? lista[i].motivo : "";
+                var responsable = angular.isDefined(lista[i].responsable) == true ? lista[i].responsable : "";
+                // var estatus = angular.isDefined(lista[i].estatus) == true ? lista[i].estatus : "";
+                var monto = angular.isDefined(lista[i].monto) == true ? lista[i].monto : "";
+                var despacho = angular.isDefined(lista[i].despacho) == true ? lista[i].despacho : "";
+                var notificacion = angular.isDefined(lista[i].notificacion) == true ? lista[i].notificacion : "";
+                var contestacion = angular.isDefined(lista[i].contestacion) == true ? lista[i].contestacion : "";
+                var vencimiento = angular.isDefined(lista[i].vencimiento) == true ? lista[i].vencimiento : "";
+
+                trHtml += "<tr>";
+                trHtml += '<td id=' + lista[i].id + '><div ng-click="darSeguimiento($event)"  class="waves-effect waves-mimpo btn-small   btn modal-trigger    orange"  >Etapa 3</div></td>';
+                trHtml += "<td>" + referencia + "</td>";
+                trHtml += "<td>" + pedimento + "</td>";
+                trHtml += "<td>" + cliente + "</td>";
+                trHtml += "<td>" + asunto + "</td>";
+                trHtml += "<td>" + numerodeActa + "</td>";
+                trHtml += "<td>" + motivo + "</td>";
+                trHtml += "<td>" + responsable + "</td>";
+                trHtml += "<td>" + monto + "</td>";
+                trHtml += "<td>" + despacho + "</td>";
+                trHtml += "<td>" + notificacion + "</td>";
+                trHtml += "<td>" + vencimiento + "</td>";
+                trHtml += "<td>" + contestacion + "</td>";
+
+
+                trHtml += "</tr>";
+
             }
-            body.append(trHtml);
+            trHtml += "<tbody>";
+            tabla.append($compile(trHtml)($scope));
         })
+
     }
     $scope.cD = function () {
         headHtml += "<thead>";
@@ -342,7 +538,7 @@ app.controller("controlMultasCtrl", function ($scope, $http, $compile, $q) {
         })
     }
     $scope.Recientes = function () {
-
+        console.log("recientes")
         headHtml = ""
         trHtml = "";
         tabla.html("");
@@ -382,8 +578,8 @@ app.controller("controlMultasCtrl", function ($scope, $http, $compile, $q) {
                 var contestacion = angular.isDefined(lista[i].contestacion) == true ? lista[i].contestacion : "";
                 var vencimiento = angular.isDefined(lista[i].vencimiento) == true ? lista[i].vencimiento : "";
 
-                trHtml += "<tr>"; 
-                trHtml += '<td id='+lista[i].id+'><div ng-click="darSeguimiento($event)" class="waves-effect waves-mimpo btn-small   btn modal-trigger    green"  >Seguimiento</div></td>';
+                trHtml += "<tr>";
+                trHtml += '<td id=' + lista[i].id + '><div ng-click="darSeguimiento($event)" class="waves-effect waves-mimpo btn-small   btn modal-trigger    blue"  >Seguimiento</div></td>';
                 trHtml += "<td>" + referencia + "</td>";
                 trHtml += "<td>" + pedimento + "</td>";
                 trHtml += "<td>" + cliente + "</td>";
@@ -407,13 +603,18 @@ app.controller("controlMultasCtrl", function ($scope, $http, $compile, $q) {
     }
 
     $scope.darSeguimiento = function (clickEvent) {
-        console.log("hola muindo" + angular.toJson(clickEvent,true))
-        
-        $scope.myParentId= clickEvent.target.parentElement.id;
+        $scope.myParentId = clickEvent.target.parentElement.id;
+        model = angular.element(document.querySelector('#modalSeguimiento'));
+        model.openModal();
+    }
+    $scope.selectAction = function () {
+        // $scope.myParentId= clickEvent.target.parentElement.id;
         var model = angular.element(document.querySelector('#modalSeguimiento'));
         model.openModal();
-        console.log("terminando  muindo"+  $scope.myParentId)
+        console.log("terminando  muindo" + $scope.myParentId)
     }
+
+
     function obtenerDatos(sec) {
         var def = $q.defer();
         $http({
@@ -433,6 +634,38 @@ app.controller("controlMultasCtrl", function ($scope, $http, $compile, $q) {
         });
         return def.promise;
     }
+
+
+
+    $scope.modificarStatus = function () {
+
+
+
+        model.openModal();
+        var def = $q.defer();
+        $http({
+            method: 'POST',
+            url: 'CObtenerMultass',
+            params: {modificar: $scope.deAcuerdo == "Si" ? "Concluido" : "Sin Resolucion", id: $scope.myParentId},
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).success(function (data) {
+//            var lista = [];
+//            lista = angular.fromJson(data);
+//            def.resolve(lista)
+            alert(data)
+            $scope.Recientes();
+
+            model.closeModal();
+            ;
+        }).error(function (data) {
+            console.log(data);
+            def.reject(data);
+        });
+        return def.promise;
+    }
+
 
 
 });

@@ -67,7 +67,7 @@ public class CnuevoRegistro extends HttpServlet {
         String despacho = (String) request.getParameter("despacho");
 
         // SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-        String recientes = "Recienetes";
+        String recientes = "Recientes";
 
         System.out.println("despachoo  " + despacho);
 

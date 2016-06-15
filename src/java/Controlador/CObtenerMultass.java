@@ -53,6 +53,9 @@ public class CObtenerMultass extends HttpServlet {
 
         if (seccion.equals("todos")) {
             listaMultas = obtenerMultas();
+        } else if (seccion.equals("PAMA")) {
+            listaMultas = obtenerMultasPama();
+
         } else {
             listaMultas = obtenerMultasSeccion(seccion);
         }
@@ -67,7 +70,29 @@ public class CObtenerMultass extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        String modificar = (String) request.getParameter("modificar");
 
+        String id = request.getParameter("id");
+
+        System.out.println(id + "multas secciones jajaja " + modificar);
+        actualizarStatusMulta(modificar, Integer.parseInt(id));
+        response.getWriter().write("Actualizado correctamente");
+
+    }
+
+    public void actualizarStatusMulta(String status, int id) {
+        EntityManager crea = emf.createEntityManager();
+        ControlMultas cm = crea.find(ControlMultas.class, id);
+        crea.getTransaction().begin();
+        cm.setNombreSeccion(status);
+        crea.getTransaction().commit();
+        System.out.println("actualizado");
+    }
+
+    public List obtenerMultasPama() {
+        System.out.println("multas pama");
+        return emf.createEntityManager().createNativeQuery("select * from ControlMultas where Asunto like 'PAMA'", ControlMultas.class).getResultList();
     }
 
     public List obtenerMultasSeccion(String seccion) {
@@ -75,7 +100,6 @@ public class CObtenerMultass extends HttpServlet {
     }
 
     public List obtenerMultas() {
-        System.out.println("obtenediendo de todos ajajaja ");
         return emf.createEntityManager().createNativeQuery("select * from ControlMultas ", ControlMultas.class).getResultList();
     }
 

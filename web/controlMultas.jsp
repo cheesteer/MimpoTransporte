@@ -205,15 +205,7 @@
                             <div class="input-field col s3">
                                 <input value="" id="constestacion" type="date" class="datepicker">
                                 <label class="active" for="constestacion">Constestacion </label>
-                            </div>
-                            <!-- <div class="input-field col s3">
-                             <input value="" id="plazoAutoridad" type="text" class="validate">
-                             <label class="active" for="plazoAutoridad">Plazo Autoridad </label>
-                         </div>
-                         <div class="input-field col s6">
-                             <input value="" id="observacion" type="text" class="validate">
-                             <label class="active" for="observacion">Observacion </label>
-                         </div>-->
+                            </div>                   
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -260,83 +252,116 @@
 
 
 
-                <div id="modalSeguimiento" class="modal  modal-fixed-footer">
+                <div id="modalSeguimiento" class="modal  modal-fixed-footer"  >
 
                     <div class="modal-content large">
 
                         <div class="row">
                             <div class="input-field col s12">
-                                <select>
+                                <select ng-model="deAcuerdo" ng-change="selectAction()">
                                     <option value=""selected> Seleccionar</option>                                   
-                                    <option value="2">Si</option>
-                                    <option value="3">No</option>
+                                    <option value="Si">Si</option>
+                                    <option value="No">No</option>
 
                                 </select>
                                 <label>Está de acuerdo con la autoridad?</label>
                             </div>
                         </div>
-                        <div class="row">
-
-
-                            <form action="#" class="input-field col s12" >
-                                <label class="active" for="asunto">Numero de oficio  </label>
-                                <div class="file-field input-field">
-                                    <div class="btn">
-                                        <span>File</span>
-                                        <input type="file">
+                        <div  ng-if="deAcuerdo == 'Si'">
+                            <div class="row">
+                                <form action="#" class="input-field col s12" >
+                                    <label class="active" for="asunto">Numero de oficio  </label>                                    
+                                    <input value="" id="numOficio" type="text" class="validate">
+                                    <div class="file-field input-field">
+                                        <div class="btn">
+                                            <span>File</span>
+                                            <input type="file">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text">
+                                        </div>
                                     </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text">
+                                </form>
+                            </div>
+                            <div class="row">
+                                <form action="#" class="input-field col s12" >
+                                    <label class="active" for="asunto">Numero de crédito fiscal   </label>
+                                     <input value="" id="numCreditoFiscal" type="text" class="validate">
+                                    <div class="file-field input-field">
+                                        <div class="btn">
+                                            <span>File</span>
+                                            <input type="file">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text">
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
-
+                                </form>
+                            </div>
+                            <div class="row">
+                                <form action="#" class="input-field col s12" >
+                                    <label class="active" for="asunto">Numero de cheque  </label>
+                                       <input value="" id="numCheque" type="text" class="validate">
+                                    <div class="file-field input-field">
+                                        <div class="btn">
+                                            <span>File</span>
+                                            <input type="file">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s3">
+                                    <input value="" id="constestacion" type="date" class="datepicker">
+                                    <label class="active" for="constestacion">Fecha de deposito </label>
+                                </div>                       
+                            </div>
                         </div>
-                        <div class="row">
 
 
-                            <form action="#" class="input-field col s12" >
-                                <label class="active" for="asunto">Numero de crédito fiscal   </label>
-                                <div class="file-field input-field">
-                                    <div class="btn">
-                                        <span>File</span>
-                                        <input type="file">
+
+                        <div  ng-if="deAcuerdo == 'No'">
+                            <div class="row">
+                                <form action="#" class="input-field col s12" >
+                                    <label class="active" for="asunto">Numero de escrito   </label>
+                                    <input value="" id="numEscrito" type="text" class="validate">
+                                    <div class="file-field input-field">
+                                        <div class="btn">
+                                            <span>File</span>
+                                            <input type="file">
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path validate" type="text">
+                                        </div>
                                     </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text">
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>
-                        <div class="row">
-
-
-                            <form action="#" class="input-field col s12" >
-                                <label class="active" for="asunto">Numero de cheque  </label>
-                                <div class="file-field input-field">
-                                    <div class="btn">
-                                        <span>File</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text">
-                                    </div>
-                                </div>
-
-                            </form>
-
-                        </div>
-                        <div class="row">
+                                </form>
+                            </div>
+                            
+                              <div class="row">
                             <div class="input-field col s3">
-                                <input value="" id="constestacion" type="date" class="datepicker">
-                                <label class="active" for="constestacion">Fecha de deposito </label>
-                            </div>                       
+                                <input   id="" type="date"   class="datepicker">
+                                <label class="active" for="fredaccion">Fecha Redacción </label>
+                            </div>
+                            <div class="input-field col s3">
+                                <label class="active" for="fregistro">Fecha Registro </label>
+                                <input value="" id="fregistro" type="date" class="datepicker">
+
+                            </div>
+                            <div class="input-field col s6">
+                                <label class="active" for="fvencimiento">Fecha Vencimiento 45</label>
+                                <input value="" id="fvencimiento" type="date" class="datepicker">
+
+                            </div>
+                        </div>
+                         
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" id="guardarNuevoRegistro">Guardar</a>
-                        <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat" id="cancelarNuevoRegistro">Cerrar</a>
+                        <a  class="   waves-effect waves-green btn-flat" ng-click="modificarStatus()">Guardar</a>
+                        <a href="#!" class=" modal-action  modal-close waves-effect waves-red btn-flat" id="cancelarNuevoRegistro">Cerrar</a>
                     </div>
                 </div>
 
